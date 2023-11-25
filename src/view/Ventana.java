@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -63,15 +64,15 @@ public class Ventana extends JFrame {
 
 		int altura = Integer.parseInt(alturaTextField.getText());
 		int anchura = Integer.parseInt(anchuraTextField.getText());
-
+		panel.setLayout(new GridLayout(altura,anchura));
 		panel.removeAll();
 
 		botones = new JButton[altura][anchura];
 
 		for (int i = 0; i < altura; i++) {
 			for (int j = 0; j < anchura; j++) {
-				botones[i][j] = new JButton("Boton " + (i * anchura + j + 1));
-				botones[i][j].setBounds(j * 80, i * 80, 80, 80);
+				botones[i][j] = new JButton( i +"  "+j );
+				botones[i][j].setSize(100, 100);
 				panel.add(botones[i][j]);
 			}
 		}
