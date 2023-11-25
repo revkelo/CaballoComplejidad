@@ -58,14 +58,14 @@ public class RecorridoCaballo {
                 sol[siguiente_x][siguiente_y] = movimiento;
 
                 if (siguiente_x == filaObjetivo && siguiente_y == colObjetivo) {
-                    // El caballo ha alcanzado la posición objetivo
+       
                     return true;
                 }
 
                 if (resolverRecorridoCaballoUtil(siguiente_x, siguiente_y, movimiento + 1, sol, xMovimiento, yMovimiento, filaObjetivo, colObjetivo)) {
                     return true;
                 } else {
-                    sol[siguiente_x][siguiente_y] = 0; // Restablece la casilla a 0 en el backtracking
+                    sol[siguiente_x][siguiente_y] = 0; 
                 }
             }
         }
