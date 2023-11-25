@@ -231,14 +231,21 @@ public class Ventana extends JFrame {
 	public void resaltar(int x, int y) {
 
 		botones[x][y].setBackground(Color.yellow);
-		System.out.println("Cambiado  " + x + "    " + y);
+	
+		panelDos.repaint();
+
+	}
+	
+	public void cambiar(int x, int y,String nom) {
+
+		botones[x][y].setText(nom);;
+	
 		panelDos.repaint();
 
 	}
 
-	public void crearGrid() {
-		int altura = Integer.parseInt(alturaTextField.getText());
-		int anchura = Integer.parseInt(anchuraTextField.getText());
+	public void crearGrid(int altura,int anchura ) {
+
 		pmat.removeAll();
 
 		botones = new JButton[altura][anchura];
@@ -254,7 +261,7 @@ public class Ventana extends JFrame {
 
 		for (int i = 0; i < altura; i++) {
 			for (int j = 0; j < anchura; j++) {
-				botones[i][j] = new JButton(i + "  " + j);
+				botones[i][j] = new JButton();
 				botones[i][j].setPreferredSize(new Dimension(80, 80));
 				panelBotones.add(botones[i][j]);
 			}
