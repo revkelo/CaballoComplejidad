@@ -35,9 +35,10 @@ public class Controller implements ActionListener {
 			cordenadas.add(new Point(0, 0));
 			cordenadas.add(new Point(0, 1));
 			cordenadas.add(new Point(0, 2));
+			cordenadas.add(new Point(1, 2));
 
 			for (int i = 0; i < cordenadas.size(); i++) {
-				vp.resaltar(cordenadas.get(i).x, cordenadas.get(i).x);
+				vp.resaltar(cordenadas.get(i).x, cordenadas.get(i).y);
 			}
 
 		}

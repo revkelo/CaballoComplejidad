@@ -54,7 +54,7 @@ public class Ventana extends JFrame {
 	public void resaltar(int x, int y) {
 
 		botones[x][y].setBackground(Color.yellow);
-		System.out.println("Cambiado");
+		System.out.println("Cambiado  "+x+"    "+y);
 		panel.repaint();
 
 	}
