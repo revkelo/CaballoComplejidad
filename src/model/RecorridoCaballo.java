@@ -1,11 +1,33 @@
 package model;
 
-
 import java.util.Scanner;
 
 public class RecorridoCaballo {
-    static int altura = 8; // Altura del tablero
-    static int ancho = 9; // Anchura del tablero
+    static int altura = 8;
+    static int ancho = 9;
+    private static final int MAX_INTENTOS = 10000;
+    private static int obt;
+
+    static class Move {
+        int x;
+        int y;
+
+        Move(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+
+    public static void printMoves() {
+        System.out.print("Moves: ");
+        for (int i = 0; i < moves.length; i++) {
+            if (moves[i] != null) {
+                System.out.print("(" + moves[i].x + "," + moves[i].y + ") ");
+            }
+        }
+        System.out.println();
+    }
+    static Move[] moves; // Array to store moves
 
     public static boolean esSeguro(int x, int y, int sol[][]) {
         return (x >= 0 && x < altura && y >= 0 && y < ancho && sol[x][y] == 0);
@@ -20,7 +42,8 @@ public class RecorridoCaballo {
         }
     }
 
-    public static boolean resolverRecorridoCaballo(int filaInicio, int colInicio, int filaObjetivo, int colObjetivo) {
+    public static boolean resolverRecorridoCaballo(int filaInicio, int colInicio, int filaObjetivo, int colObjetivo,
+            int p, int q) {
         int sol[][] = new int[altura][ancho];
 
         for (int x = 0; x < altura; x++) {
@@ -29,25 +52,42 @@ public class RecorridoCaballo {
             }
         }
 
-        int[] xMovimiento = {2, 1, -1, -2, -2, -1, 1, 2};
-        int[] yMovimiento = {1, 2, 2, 1, -1, -2, -2, -1};
+        // Initialize moves array based on the total number of moves
+        moves = new Move[altura * ancho];
+
+        int[] xMovimiento = { p, q, -q, -p, -p, -q, q, p };
+        int[] yMovimiento = { q, p, p, q, -q, -p, -p, -q };
 
         sol[filaInicio][colInicio] = 1; // Inicia desde 1
 
-        if (!resolverRecorridoCaballoUtil(filaInicio, colInicio, 2, sol, xMovimiento, yMovimiento, filaObjetivo, colObjetivo)) {
+        // Store the initial coordinates in the moves array
+        moves[0] = new Move(filaInicio, colInicio);
+
+        if (!resolverRecorridoCaballoUtil(filaInicio, colInicio, 2, sol, xMovimiento, yMovimiento, filaObjetivo,
+                colObjetivo, 0)) {
             System.out.println("No hay solución");
             return false;
         } else {
             imprimirSolucion(sol);
+            printMoves(); // Print the (x, y) coordinates of each move
             return true;
         }
     }
 
-    public static boolean resolverRecorridoCaballoUtil(int x, int y, int movimiento, int sol[][], int xMovimiento[], int yMovimiento[], int filaObjetivo, int colObjetivo) {
+    public static boolean resolverRecorridoCaballoUtil(int x, int y, int movimiento, int sol[][], int xMovimiento[],
+            int yMovimiento[], int filaObjetivo, int colObjetivo, int intentos) {
         int k, siguiente_x, siguiente_y;
 
         if (movimiento == altura * ancho + 1) {
             return true;
+        }
+
+        if (intentos >= 0) {
+            obt++;
+        }
+
+        if (obt >= MAX_INTENTOS) {
+            return false;
         }
 
         for (k = 0; k < 8; k++) {
@@ -57,15 +97,18 @@ public class RecorridoCaballo {
             if (esSeguro(siguiente_x, siguiente_y, sol)) {
                 sol[siguiente_x][siguiente_y] = movimiento;
 
+                // Store the move coordinates in the moves array
+                moves[movimiento - 1] = new Move(siguiente_x, siguiente_y);
+
                 if (siguiente_x == filaObjetivo && siguiente_y == colObjetivo) {
-       
                     return true;
                 }
 
-                if (resolverRecorridoCaballoUtil(siguiente_x, siguiente_y, movimiento + 1, sol, xMovimiento, yMovimiento, filaObjetivo, colObjetivo)) {
+                if (resolverRecorridoCaballoUtil(siguiente_x, siguiente_y, movimiento + 1, sol, xMovimiento,
+                        yMovimiento, filaObjetivo, colObjetivo, intentos + 1)) {
                     return true;
                 } else {
-                    sol[siguiente_x][siguiente_y] = 0; 
+                    sol[siguiente_x][siguiente_y] = 0;
                 }
             }
         }
@@ -97,8 +140,14 @@ public class RecorridoCaballo {
             return;
         }
 
-        if (altura <= 0 || ancho <= 0) {
-            System.out.println("La altura y la anchura deben ser mayores que cero.");
+        System.out.print("Introduce el número de casillas para el primer movimiento (p): ");
+        int p = scanner.nextInt();
+
+        System.out.print("Introduce el número de casillas para el segundo movimiento (q): ");
+        int q = scanner.nextInt();
+
+        if (altura <= 0 || ancho <= 0 || p <= 0 || q <= 0) {
+            System.out.println("La altura, la anchura, p y q deben ser mayores que cero.");
             return;
         }
 
@@ -107,6 +156,6 @@ public class RecorridoCaballo {
             return;
         }
 
-        resolverRecorridoCaballo(filaInicio, colInicio, filaObjetivo, colObjetivo);
+        resolverRecorridoCaballo(filaInicio, colInicio, filaObjetivo, colObjetivo, p, q);
     }
 }
