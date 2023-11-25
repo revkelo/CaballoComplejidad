@@ -20,6 +20,8 @@ public class Controller implements ActionListener {
 	public void actionListeners() {
 		vp.getCrearGridButton().addActionListener(this);
 		vp.getResaltar().addActionListener(this);
+		vp.getInicio().addActionListener(this);
+		vp.getVolver().addActionListener(this);
 	}
 
 	@Override
@@ -31,6 +33,28 @@ public class Controller implements ActionListener {
 			vp.crearGrid();
 
 		}
+
+		if (comando.equals("botIniciar")) {
+
+			vp.getPanelUno().setVisible(false);
+
+			vp.getPanelDos().setVisible(true);
+			vp.getPanelTres().setVisible(true);
+			vp.getPmat().setVisible(true);
+			vp.getVolver().setVisible(true);
+
+		}
+
+		if (comando.equals("volver")) {
+
+			vp.getPanelUno().setVisible(true);
+
+			vp.getPanelDos().setVisible(false);
+			vp.getPanelTres().setVisible(false);
+			vp.getPmat().setVisible(false);
+			vp.getVolver().setVisible(false);
+		}
+
 		if (comando.equals("Resaltar")) {
 			cordenadas.add(new Point(0, 0));
 			cordenadas.add(new Point(0, 1));
