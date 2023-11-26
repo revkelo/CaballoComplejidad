@@ -20,7 +20,7 @@ import javax.swing.border.LineBorder;
 public class Ventana extends JFrame {
 
 	private JPanel panelUno, panelDos, panelTres, pmat;
-	private JLabel img, titulo, rta, e1, e2, e3, px, py, e4, e5, e6, e7;
+	private JLabel img, titulo, rta, e1, e2, e3, px, py, e4, e5, e6, e7, e8;
 	private JTextField alturaTextField, anchuraTextField, pxUnoTf, pyUnoTf, pxDosTf, pyDosTf, valorQ, valorP;
 	private JButton mostrar, siguiente, anterior, volver;
 	private JButton crearGridButton, resaltar, inicio;
@@ -139,6 +139,12 @@ public class Ventana extends JFrame {
 		e7.setFont(new Font("Monospaced", Font.BOLD, 14));
 		e7.setForeground(Color.black);
 		panelDos.add(e7);
+		
+		e8 = new JLabel(" ");
+		e8.setBounds(10, 230, 450, 20);
+		e8.setFont(new Font("Monospaced", Font.BOLD, 12));
+		e8.setForeground(Color.black);
+		panelDos.add(e8);
 
 		alturaTextField = new JTextField();
 		alturaTextField.setBounds(180, 75, 40, 25);
@@ -201,7 +207,7 @@ public class Ventana extends JFrame {
 		panelTres.setBounds(20, 400, 250, 200);
 		add(panelTres);
 
-		rta = new JLabel("SI hay solucion");
+		rta = new JLabel("Ingrese los datos");
 		rta.setBounds(40, 10, 450, 30);
 		rta.setFont(new Font("Showcard Gothic", Font.BOLD, 18));
 		rta.setForeground(Color.black);
@@ -252,6 +258,13 @@ public class Ventana extends JFrame {
 		panelDos.repaint();
 
 	}
+	
+	public void resetearMatriz() {
+      System.out.println("hpla");
+		botones = null;
+		panelDos.repaint();
+
+    }
 
 	public void resaltarCamino(int x, int y) {
 
@@ -543,6 +556,104 @@ public class Ventana extends JFrame {
 	 */
 	public void setCrearGridButton(JButton crearGridButton) {
 		this.crearGridButton = crearGridButton;
+	}
+
+	/**
+	 * @return the pxUnoTf
+	 */
+	public JTextField getPxUnoTf() {
+		return pxUnoTf;
+	}
+
+	/**
+	 * @param pxUnoTf the pxUnoTf to set
+	 */
+	public void setPxUnoTf(JTextField pxUnoTf) {
+		this.pxUnoTf = pxUnoTf;
+	}
+
+	/**
+	 * @return the pyUnoTf
+	 */
+	public JTextField getPyUnoTf() {
+		return pyUnoTf;
+	}
+
+	/**
+	 * @param pyUnoTf the pyUnoTf to set
+	 */
+	public void setPyUnoTf(JTextField pyUnoTf) {
+		this.pyUnoTf = pyUnoTf;
+	}
+
+	/**
+	 * @return the pxDosTf
+	 */
+	public JTextField getPxDosTf() {
+		return pxDosTf;
+	}
+
+	/**
+	 * @param pxDosTf the pxDosTf to set
+	 */
+	public void setPxDosTf(JTextField pxDosTf) {
+		this.pxDosTf = pxDosTf;
+	}
+
+	/**
+	 * @return the pyDosTf
+	 */
+	public JTextField getPyDosTf() {
+		return pyDosTf;
+	}
+
+	/**
+	 * @param pyDosTf the pyDosTf to set
+	 */
+	public void setPyDosTf(JTextField pyDosTf) {
+		this.pyDosTf = pyDosTf;
+	}
+
+	/**
+	 * @return the valorQ
+	 */
+	public JTextField getValorQ() {
+		return valorQ;
+	}
+
+	/**
+	 * @param valorQ the valorQ to set
+	 */
+	public void setValorQ(JTextField valorQ) {
+		this.valorQ = valorQ;
+	}
+
+	/**
+	 * @return the valorP
+	 */
+	public JTextField getValorP() {
+		return valorP;
+	}
+
+	/**
+	 * @param valorP the valorP to set
+	 */
+	public void setValorP(JTextField valorP) {
+		this.valorP = valorP;
+	}
+
+	/**
+	 * @return the e8
+	 */
+	public JLabel getE8() {
+		return e8;
+	}
+
+	/**
+	 * @param e8 the e8 to set
+	 */
+	public void setE8(JLabel e8) {
+		this.e8 = e8;
 	}
 
 }
