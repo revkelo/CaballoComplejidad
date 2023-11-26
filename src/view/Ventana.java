@@ -214,14 +214,16 @@ public class Ventana extends JFrame {
 		panelTres.add(rta);
 
 		siguiente = new JButton("Siguiente");
-		siguiente.setBounds(10, 120, 100, 50);
+		siguiente.setBounds(	130, 120, 100, 50);
 		siguiente.setFont(new Font("Monospaced", Font.BOLD, 10));
 		siguiente.setForeground(Color.black);
 		siguiente.setActionCommand("siguiente");
 		panelTres.add(siguiente);
 
+		
+
 		anterior = new JButton("Anterior");
-		anterior.setBounds(130, 120, 100, 50);
+		anterior.setBounds(10, 120, 100, 50);
 		anterior.setFont(new Font("Monospaced", Font.BOLD, 10));
 		anterior.setForeground(Color.black);
 		anterior.setActionCommand("anterior");
