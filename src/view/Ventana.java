@@ -424,341 +424,438 @@ public class Ventana extends JFrame {
 		pmat.revalidate();
 		pmat.repaint();
 	}
-
 	/**
-	 * @return the rta
+	 * Obtiene el componente de etiqueta (JLabel) asociado a esta instancia.
+	 *
+	 * @return El componente de etiqueta (JLabel) asociado.
 	 */
 	public JLabel getRta() {
-		return rta;
+	    return rta;
 	}
 
 	/**
-	 * @param rta the rta to set
+	 * Establece el componente de etiqueta (JLabel) asociado a esta instancia.
+	 *
+	 * @param rta El nuevo componente de etiqueta (JLabel) a establecer.
 	 */
 	public void setRta(JLabel rta) {
-		this.rta = rta;
+	    this.rta = rta;
 	}
 
 	/**
-	 * @return the mostrar
+	 * Obtiene el botón (JButton) "Mostrar" asociado a esta instancia.
+	 *
+	 * @return El botón (JButton) "Mostrar" asociado.
 	 */
 	public JButton getMostrar() {
-		return mostrar;
+	    return mostrar;
 	}
 
 	/**
-	 * @param mostrar the mostrar to set
+	 * Establece el botón (JButton) "Mostrar" asociado a esta instancia.
+	 *
+	 * @param mostrar El nuevo botón (JButton) "Mostrar" a establecer.
 	 */
 	public void setMostrar(JButton mostrar) {
-		this.mostrar = mostrar;
+	    this.mostrar = mostrar;
 	}
 
 	/**
-	 * @return the siguiente
+	 * Obtiene el botón (JButton) "Siguiente" asociado a esta instancia.
+	 *
+	 * @return El botón (JButton) "Siguiente" asociado.
 	 */
 	public JButton getSiguiente() {
-		return siguiente;
+	    return siguiente;
 	}
 
 	/**
-	 * @param siguiente the siguiente to set
+	 * Establece el botón (JButton) "Siguiente" asociado a esta instancia.
+	 *
+	 * @param siguiente El nuevo botón (JButton) "Siguiente" a establecer.
 	 */
 	public void setSiguiente(JButton siguiente) {
-		this.siguiente = siguiente;
+	    this.siguiente = siguiente;
 	}
 
 	/**
-	 * @return the anterior
+	 * Obtiene el botón (JButton) "Anterior" asociado a esta instancia.
+	 *
+	 * @return El botón (JButton) "Anterior" asociado.
 	 */
 	public JButton getAnterior() {
-		return anterior;
+	    return anterior;
 	}
 
 	/**
-	 * @param anterior the anterior to set
+	 * Establece el botón (JButton) "Anterior" asociado a esta instancia.
+	 *
+	 * @param anterior El nuevo botón (JButton) "Anterior" a establecer.
 	 */
 	public void setAnterior(JButton anterior) {
-		this.anterior = anterior;
+	    this.anterior = anterior;
 	}
 
 	/**
-	 * @return the volver
+	 * Obtiene el botón (JButton) "Volver" asociado a esta instancia.
+	 *
+	 * @return El botón (JButton) "Volver" asociado.
 	 */
 	public JButton getVolver() {
-		return volver;
+	    return volver;
 	}
 
 	/**
-	 * @param volver the volver to set
+	 * Establece el botón (JButton) "Volver" asociado a esta instancia.
+	 *
+	 * @param volver El nuevo botón (JButton) "Volver" a establecer.
 	 */
 	public void setVolver(JButton volver) {
-		this.volver = volver;
+	    this.volver = volver;
 	}
 
 	/**
-	 * @return the pmat
+	 * Obtiene el panel (JPanel) asociado a esta instancia.
+	 *
+	 * @return El panel (JPanel) asociado.
 	 */
 	public JPanel getPmat() {
-		return pmat;
+	    return pmat;
 	}
 
 	/**
-	 * @param pmat the pmat to set
+	 * Establece el panel (JPanel) asociado a esta instancia.
+	 *
+	 * @param pmat El nuevo panel (JPanel) a establecer.
 	 */
 	public void setPmat(JPanel pmat) {
-		this.pmat = pmat;
+	    this.pmat = pmat;
 	}
-
+	
 	/**
-	 * @return the panelTres
+	 * Obtiene el panel (JPanel) llamado "panelTres" asociado a esta instancia.
+	 *
+	 * @return El panel (JPanel) "panelTres" asociado.
 	 */
 	public JPanel getPanelTres() {
-		return panelTres;
+	    return panelTres;
 	}
 
 	/**
-	 * @param panelTres the panelTres to set
+	 * Establece el panel (JPanel) llamado "panelTres" asociado a esta instancia.
+	 *
+	 * @param panelTres El nuevo panel (JPanel) "panelTres" a establecer.
 	 */
 	public void setPanelTres(JPanel panelTres) {
-		this.panelTres = panelTres;
+	    this.panelTres = panelTres;
 	}
 
 	/**
-	 * @return the panelUno
+	 * Obtiene el panel (JPanel) llamado "panelUno" asociado a esta instancia.
+	 *
+	 * @return El panel (JPanel) "panelUno" asociado.
 	 */
 	public JPanel getPanelUno() {
-		return panelUno;
+	    return panelUno;
 	}
 
 	/**
-	 * @param panelUno the panelUno to set
+	 * Establece el panel (JPanel) llamado "panelUno" asociado a esta instancia.
+	 *
+	 * @param panelUno El nuevo panel (JPanel) "panelUno" a establecer.
 	 */
 	public void setPanelUno(JPanel panelUno) {
-		this.panelUno = panelUno;
+	    this.panelUno = panelUno;
 	}
 
 	/**
-	 * @return the panelDos
+	 * Obtiene el panel (JPanel) llamado "panelDos" asociado a esta instancia.
+	 *
+	 * @return El panel (JPanel) "panelDos" asociado.
 	 */
 	public JPanel getPanelDos() {
-		return panelDos;
+	    return panelDos;
 	}
 
 	/**
-	 * @param panelDos the panelDos to set
+	 * Establece el panel (JPanel) llamado "panelDos" asociado a esta instancia.
+	 *
+	 * @param panelDos El nuevo panel (JPanel) "panelDos" a establecer.
 	 */
 	public void setPanelDos(JPanel panelDos) {
-		this.panelDos = panelDos;
+	    this.panelDos = panelDos;
 	}
 
 	/**
-	 * @return the titulo
+	 * Obtiene la etiqueta (JLabel) llamada "titulo" asociada a esta instancia.
+	 *
+	 * @return La etiqueta (JLabel) "titulo" asociada.
 	 */
 	public JLabel getTitulo() {
-		return titulo;
+	    return titulo;
 	}
 
 	/**
-	 * @param titulo the titulo to set
+	 * Establece la etiqueta (JLabel) llamada "titulo" asociada a esta instancia.
+	 *
+	 * @param titulo La nueva etiqueta (JLabel) "titulo" a establecer.
 	 */
 	public void setTitulo(JLabel titulo) {
-		this.titulo = titulo;
+	    this.titulo = titulo;
 	}
 
 	/**
-	 * @return the inicio
+	 * Obtiene el botón (JButton) llamado "inicio" asociado a esta instancia.
+	 *
+	 * @return El botón (JButton) "inicio" asociado.
 	 */
 	public JButton getInicio() {
-		return inicio;
+	    return inicio;
 	}
 
 	/**
-	 * @param inicio the inicio to set
+	 * Establece el botón (JButton) llamado "inicio" asociado a esta instancia.
+	 *
+	 * @param inicio El nuevo botón (JButton) "inicio" a establecer.
 	 */
 	public void setInicio(JButton inicio) {
-		this.inicio = inicio;
+	    this.inicio = inicio;
 	}
 
 	/**
-	 * @return the resaltar
+	 * Obtiene el botón (JButton) llamado "resaltar" asociado a esta instancia.
+	 *
+	 * @return El botón (JButton) "resaltar" asociado.
 	 */
 	public JButton getResaltar() {
-		return resaltar;
+	    return resaltar;
 	}
 
 	/**
-	 * @param resaltar the resaltar to set
+	 * Establece el botón (JButton) llamado "resaltar" asociado a esta instancia.
+	 *
+	 * @param resaltar El nuevo botón (JButton) "resaltar" a establecer.
 	 */
 	public void setResaltar(JButton resaltar) {
-		this.resaltar = resaltar;
+	    this.resaltar = resaltar;
 	}
 
 	/**
-	 * @return the botones
+	 * Obtiene una matriz bidimensional de botones (JButton) llamada "botones" asociada a esta instancia.
+	 *
+	 * @return La matriz bidimensional de botones (JButton) "botones" asociada.
 	 */
 	public JButton[][] getBotones() {
-		return botones;
+	    return botones;
 	}
 
 	/**
-	 * @param botones the botones to set
+	 * Establece una matriz bidimensional de botones (JButton) llamada "botones" asociada a esta instancia.
+	 *
+	 * @param botones La nueva matriz bidimensional de botones (JButton) "botones" a establecer.
 	 */
 	public void setBotones(JButton[][] botones) {
-		this.botones = botones;
+	    this.botones = botones;
 	}
 
 	/**
-	 * @return the alturaTextField
+	 * Obtiene el campo de texto (JTextField) llamado "alturaTextField" asociado a esta instancia.
+	 *
+	 * @return El campo de texto (JTextField) "alturaTextField" asociado.
 	 */
 	public JTextField getAlturaTextField() {
-		return alturaTextField;
+	    return alturaTextField;
 	}
 
 	/**
-	 * @param alturaTextField the alturaTextField to set
+	 * Establece el campo de texto (JTextField) llamado "alturaTextField" asociado a esta instancia.
+	 *
+	 * @param alturaTextField El nuevo campo de texto (JTextField) "alturaTextField" a establecer.
 	 */
 	public void setAlturaTextField(JTextField alturaTextField) {
-		this.alturaTextField = alturaTextField;
+	    this.alturaTextField = alturaTextField;
 	}
 
 	/**
-	 * @return the anchuraTextField
+	 * Obtiene el campo de texto (JTextField) llamado "anchuraTextField" asociado a esta instancia.
+	 *
+	 * @return El campo de texto (JTextField) "anchuraTextField" asociado.
 	 */
 	public JTextField getAnchuraTextField() {
-		return anchuraTextField;
+	    return anchuraTextField;
 	}
 
 	/**
-	 * @param anchuraTextField the anchuraTextField to set
+	 * Establece el campo de texto (JTextField) llamado "anchuraTextField" asociado a esta instancia.
+	 *
+	 * @param anchuraTextField El nuevo campo de texto (JTextField) "anchuraTextField" a establecer.
 	 */
 	public void setAnchuraTextField(JTextField anchuraTextField) {
-		this.anchuraTextField = anchuraTextField;
+	    this.anchuraTextField = anchuraTextField;
 	}
 
 	/**
-	 * @return the panel
+	 * Obtiene el panel (JPanel) llamado "panelDos" asociado a esta instancia.
+	 *
+	 * @return El panel (JPanel) "panelDos" asociado.
 	 */
+
 	public JPanel getPanel() {
-		return panelDos;
+	    return panelDos;
 	}
 
+	
 	/**
-	 * @param panel the panel to set
+	 * Establece el panel (JPanel) llamado "panel" asociado a esta instancia.
+	 *
+	 * @param panel El nuevo panel (JPanel) a establecer.
 	 */
 	public void setPanel(JPanel panel) {
-		this.panelDos = panel;
+	    this.panelDos = panel;
 	}
 
 	/**
-	 * @return the crearGridButton
+	 * Obtiene el botón (JButton) llamado "crearGridButton" asociado a esta instancia.
+	 *
+	 * @return El botón (JButton) "crearGridButton" asociado.
 	 */
 	public JButton getCrearGridButton() {
-		return crearGridButton;
+	    return crearGridButton;
 	}
 
 	/**
-	 * @param crearGridButton the crearGridButton to set
+	 * Establece el botón (JButton) llamado "crearGridButton" asociado a esta instancia.
+	 *
+	 * @param crearGridButton El nuevo botón (JButton) "crearGridButton" a establecer.
 	 */
 	public void setCrearGridButton(JButton crearGridButton) {
-		this.crearGridButton = crearGridButton;
+	    this.crearGridButton = crearGridButton;
 	}
 
 	/**
-	 * @return the pxUnoTf
+	 * Obtiene el campo de texto (JTextField) llamado "pxUnoTf" asociado a esta instancia.
+	 *
+	 * @return El campo de texto (JTextField) "pxUnoTf" asociado.
 	 */
 	public JTextField getPxUnoTf() {
-		return pxUnoTf;
+	    return pxUnoTf;
 	}
 
 	/**
-	 * @param pxUnoTf the pxUnoTf to set
+	 * Establece el campo de texto (JTextField) llamado "pxUnoTf" asociado a esta instancia.
+	 *
+	 * @param pxUnoTf El nuevo campo de texto (JTextField) "pxUnoTf" a establecer.
 	 */
 	public void setPxUnoTf(JTextField pxUnoTf) {
-		this.pxUnoTf = pxUnoTf;
+	    this.pxUnoTf = pxUnoTf;
 	}
 
 	/**
-	 * @return the pyUnoTf
+	 * Obtiene el campo de texto (JTextField) llamado "pyUnoTf" asociado a esta instancia.
+	 *
+	 * @return El campo de texto (JTextField) "pyUnoTf" asociado.
 	 */
 	public JTextField getPyUnoTf() {
-		return pyUnoTf;
+	    return pyUnoTf;
 	}
 
 	/**
-	 * @param pyUnoTf the pyUnoTf to set
+	 * Establece el campo de texto (JTextField) llamado "pyUnoTf" asociado a esta instancia.
+	 *
+	 * @param pyUnoTf El nuevo campo de texto (JTextField) "pyUnoTf" a establecer.
 	 */
 	public void setPyUnoTf(JTextField pyUnoTf) {
-		this.pyUnoTf = pyUnoTf;
+	    this.pyUnoTf = pyUnoTf;
 	}
 
 	/**
-	 * @return the pxDosTf
+	 * Obtiene el campo de texto (JTextField) llamado "pxDosTf" asociado a esta instancia.
+	 *
+	 * @return El campo de texto (JTextField) "pxDosTf" asociado.
 	 */
 	public JTextField getPxDosTf() {
-		return pxDosTf;
+	    return pxDosTf;
 	}
 
 	/**
-	 * @param pxDosTf the pxDosTf to set
+	 * Establece el campo de texto (JTextField) llamado "pxDosTf" asociado a esta instancia.
+	 *
+	 * @param pxDosTf El nuevo campo de texto (JTextField) "pxDosTf" a establecer.
 	 */
 	public void setPxDosTf(JTextField pxDosTf) {
-		this.pxDosTf = pxDosTf;
+	    this.pxDosTf = pxDosTf;
 	}
 
 	/**
-	 * @return the pyDosTf
+	 * Obtiene el campo de texto (JTextField) llamado "pyDosTf" asociado a esta instancia.
+	 *
+	 * @return El campo de texto (JTextField) "pyDosTf" asociado.
 	 */
 	public JTextField getPyDosTf() {
-		return pyDosTf;
+	    return pyDosTf;
 	}
 
 	/**
-	 * @param pyDosTf the pyDosTf to set
+	 * Establece el campo de texto (JTextField) llamado "pyDosTf" asociado a esta instancia.
+	 *
+	 * @param pyDosTf El nuevo campo de texto (JTextField) "pyDosTf" a establecer.
 	 */
 	public void setPyDosTf(JTextField pyDosTf) {
-		this.pyDosTf = pyDosTf;
+	    this.pyDosTf = pyDosTf;
 	}
 
 	/**
-	 * @return the valorQ
+	 * Obtiene el campo de texto (JTextField) llamado "valorQ" asociado a esta instancia.
+	 *
+	 * @return El campo de texto (JTextField) "valorQ" asociado.
 	 */
 	public JTextField getValorQ() {
-		return valorQ;
+	    return valorQ;
 	}
 
 	/**
-	 * @param valorQ the valorQ to set
+	 * Establece el campo de texto (JTextField) llamado "valorQ" asociado a esta instancia.
+	 *
+	 * @param valorQ El nuevo campo de texto (JTextField) "valorQ" a establecer.
 	 */
 	public void setValorQ(JTextField valorQ) {
-		this.valorQ = valorQ;
+	    this.valorQ = valorQ;
 	}
 
 	/**
-	 * @return the valorP
+	 * Obtiene el campo de texto (JTextField) llamado "valorP" asociado a esta instancia.
+	 *
+	 * @return El campo de texto (JTextField) "valorP" asociado.
 	 */
 	public JTextField getValorP() {
-		return valorP;
+	    return valorP;
 	}
 
 	/**
-	 * @param valorP the valorP to set
+	 * Establece el campo de texto (JTextField) llamado "valorP" asociado a esta instancia.
+	 *
+	 * @param valorP El nuevo campo de texto (JTextField) "valorP" a establecer.
 	 */
 	public void setValorP(JTextField valorP) {
-		this.valorP = valorP;
+	    this.valorP = valorP;
 	}
 
 	/**
-	 * @return the e8
+	 * Obtiene la etiqueta (JLabel) llamada "e8" asociada a esta instancia.
+	 *
+	 * @return La etiqueta (JLabel) "e8" asociada.
 	 */
 	public JLabel getE8() {
-		return e8;
+	    return e8;
 	}
 
 	/**
-	 * @param e8 the e8 to set
+	 * Establece la etiqueta (JLabel) llamada "e8" asociada a esta instancia.
+	 *
+	 * @param e8 La nueva etiqueta (JLabel) "e8" a establecer.
 	 */
 	public void setE8(JLabel e8) {
-		this.e8 = e8;
+	    this.e8 = e8;
 	}
 
 }
