@@ -25,12 +25,24 @@ public class Controller implements ActionListener {
 		vp.getResaltar().addActionListener(this);
 		vp.getInicio().addActionListener(this);
 		vp.getVolver().addActionListener(this);
+		vp.getSiguiente().addActionListener(this);
+		vp.getAnterior().addActionListener(this);
+		vp.getMostrar().addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
 
+		if (comando.equals("mostrar")) {
+
+		}
+		if (comando.equals("siguiente")) {
+
+		}
+		if (comando.equals("anterior")) {
+
+		}
 		if (comando.equals("Crear")) {
 			try {
 				if (vp.getAlturaTextField().getText().equals("") && vp.getAnchuraTextField().getText().equals("")
@@ -106,7 +118,7 @@ public class Controller implements ActionListener {
 			vp.getPyDosTf().setText("");
 			vp.getValorP().setText("");
 			vp.getValorQ().setText("");
-			
+
 			vp.resetearMatriz();
 
 		}
