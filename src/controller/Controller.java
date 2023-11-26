@@ -36,11 +36,30 @@ public class Controller implements ActionListener {
 
 		if (comando.equals("mostrar")) {
 
+			new Thread(new Runnable() {
+				public void run() {
+					md.getMc().mostrarPasos(vp.getBotones());
+
+				}
+			}).start();
+
 		}
 		if (comando.equals("siguiente")) {
+			new Thread(new Runnable() {
+				public void run() {
+					md.getMc().siguientePaso(vp.getBotones());
+
+				}
+			}).start();
 
 		}
 		if (comando.equals("anterior")) {
+			new Thread(new Runnable() {
+				public void run() {
+					md.getMc().anteriorPaso(vp.getBotones());
+
+				}
+			}).start();
 
 		}
 		if (comando.equals("Crear")) {
@@ -67,6 +86,7 @@ public class Controller implements ActionListener {
 
 					int aux[][] = md.getMc().resolverRecorridoCaballo(altura, anchura, filaInicio, colinicio,
 							filaObjetivo, colObjetivo, p, q);
+					md.getMc().camino(p, q);
 
 					System.out.println(md.getMc().isSolucion());
 					System.out.println("////////////////////////////");

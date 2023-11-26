@@ -18,8 +18,8 @@ public class MovimientoCaballo {
 	private int ancho;
 	private int MAX_INTENTOS = 10000;
 	private int obt;
-	private static ArrayList<Point> moves = new ArrayList<Point>();
-	static ArrayList<Point> intermedios = new ArrayList<Point>();
+	private ArrayList<Point> moves;
+	private ArrayList<Point> intermedios;
 	private boolean solucion;
 	private int[][] heuristic;
 	static int paso = 0, intermedio = 0;
@@ -29,127 +29,21 @@ public class MovimientoCaballo {
 		intermedios = new ArrayList<Point>();
 	}
 
-	public static void main(String[] args) {
-		JFrame frame = new JFrame("Tablero de Ajedrez con Caballo");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(700, 400);
+	public void camino(int p, int q) {
+		if (solucion == true) {
+			for (int i = 0; i < moves.size(); i++) {
+				System.out.println(moves.get(i).x + "  " + moves.get(i).y);
+				try {
+					testKnightMovement(p, q, moves.get(i).x, moves.get(i).y, moves.get(i + 1).x, moves.get(i + 1).y);
+				} catch (Exception e) {
 
-		// Crear un JPanel con GridLayout
-		JPanel panel = new JPanel(new GridLayout(5, 5, 5, 5));
+				}
 
-		// Crear una matriz de botones
-		JButton[][] buttons = new JButton[5][5];
-
-		// Inicializar y agregar botones al panel
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 5; j++) {
-				buttons[i][j] = new JButton("(" + i + "," + j + ")");
-				buttons[i][j].setBackground(Color.white);
-				panel.add(buttons[i][j]);
 			}
 		}
-
-		// Botón para pintar coordenadas intermedias
-		JButton paintButton = new JButton("Pintar Coordenadas");
-		paintButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				new Thread(new Runnable() {
-					public void run() {
-						paintIntermediateCoordinates(buttons);
-
-					}
-				}).start();
-			}
-		});
-		frame.getContentPane().add(paintButton, "South"); // Agregar el botón en la parte inferior
-
-		JButton siguientePasoButton = new JButton("Siguiente Paso");
-		JButton pasoAnteriorButton = new JButton("Paso Anterior");
-
-		// Agregar ActionListener para los nuevos botones
-		siguientePasoButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Botón 'Siguiente Paso' presionado.");
-				new Thread(new Runnable() {
-					public void run() {
-						siguientePaso(buttons);
-
-					}
-				}).start();
-			}
-		});
-
-		pasoAnteriorButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Botón 'Paso Anterior' presionado.");
-				new Thread(new Runnable() {
-					public void run() {
-						anteriorPaso(buttons);
-
-					}
-				}).start();
-			}
-		});
-
-		// Agregar los nuevos botones al contenedor
-		frame.getContentPane().add(siguientePasoButton, "East");
-		frame.getContentPane().add(pasoAnteriorButton, "West");
-
-		frame.getContentPane().add(panel);
-
-		frame.setVisible(true);
-
-		int p = 2;
-		int q = 1;
-		
-		testKnightMovement(p, q, 1, 1, 3, 2);
-		testKnightMovement(p, q, 3, 2, 4, 4);
-//		testKnightMovement(p, q, 0, 4, 2, 3);
-//		testKnightMovement(p, q, 2, 3, 0, 2);
-//		testKnightMovement(p, q, 0, 2, 1, 4);
-//		testKnightMovement(p, q, 1, 4, 2, 2);
-//		testKnightMovement(p, q, 2, 2, 0, 3);
-//		
-		
-//		testKnightMovement(p, q, 0, 0, 1, 2);
-//		testKnightMovement(p, q, 1, 2, 0, 4);
-//		testKnightMovement(p, q, 0, 4, 2, 3);
-//		testKnightMovement(p, q, 2, 3, 0, 2);
-//		testKnightMovement(p, q, 0, 2, 1, 4);
-//		testKnightMovement(p, q, 1, 4, 2, 2);
-//		testKnightMovement(p, q, 2, 2, 0, 3);
-
-		// Moves: (0,0) (1,2) (0,4) (2,3) (0,2) (1,4) (2,2) (0,3)
-
-		for (int i = 0; i < intermedios.size(); i++) {
-			System.out.println(intermedios.get(i).getX() + "  " + intermedios.get(i).getY());
-		}
-		
-		moves.add(new Point(1, 1));
-		moves.add(new Point(3, 2));
-		moves.add(new Point(4, 4));
-//		moves.add(new Point(2, 3));
-//		moves.add(new Point(0, 2));
-//		moves.add(new Point(1, 4));
-//		moves.add(new Point(2, 2));
-//		moves.add(new Point(0, 3));
-		
-		// Agregar las coordenadas adicionales
-//		moves.add(new Point(0, 0));
-//		moves.add(new Point(1, 2));
-//		moves.add(new Point(0, 4));
-//		moves.add(new Point(2, 3));
-//		moves.add(new Point(0, 2));
-//		moves.add(new Point(1, 4));
-//		moves.add(new Point(2, 2));
-//		moves.add(new Point(0, 3));
 
 	}
-	
+
 	public void printMoves() {
 		System.out.print("Moves: ");
 		for (int i = 0; i < moves.size(); i++) {
@@ -286,7 +180,7 @@ public class MovimientoCaballo {
 		}
 	}
 
-	private static void testKnightMovement(int p, int q, int filaInicial, int columnaInicial, int filaFinal,
+	private void testKnightMovement(int p, int q, int filaInicial, int columnaInicial, int filaFinal,
 			int columnaFinal) {
 		if (intermedios.isEmpty()) {
 			intermedios.add(new Point(filaInicial, columnaInicial));
@@ -296,8 +190,7 @@ public class MovimientoCaballo {
 		mostrarTablero(p, q, filaInicial, columnaInicial, filaFinal, columnaFinal);
 	}
 
-	private static void mostrarTablero(int p, int q, int filaCaballo, int columnaCaballo, int filaFinal,
-			int columnaFinal) {
+	private void mostrarTablero(int p, int q, int filaCaballo, int columnaCaballo, int filaFinal, int columnaFinal) {
 		int[][] matriz = { { p, q, 1 }, { q, p, 2 }, { -q, p, 3 }, { -p, q, 4 }, { -p, -q, 5 }, { -q, -p, 6 },
 				{ q, -p, 7 }, { p, -q, 8 } };
 
@@ -315,7 +208,7 @@ public class MovimientoCaballo {
 		}
 	}
 
-	public static void intermedios(int caso, int filaCaballo, int columnaCaballo, int filaFinal, int columnaFinal) {
+	public void intermedios(int caso, int filaCaballo, int columnaCaballo, int filaFinal, int columnaFinal) {
 		switch (caso) {
 		case 1:
 			for (int i = 0; i < filaFinal; i++) {
@@ -402,7 +295,7 @@ public class MovimientoCaballo {
 		}
 	}
 
-	private static void siguientePaso(JButton[][] buttons) {
+	public void siguientePaso(JButton[][] buttons) {
 		System.out.println(moves.get(paso).getX() + "  " + moves.get(paso).getY());
 		int otro = paso;
 		int pasoaux = 0;
@@ -444,7 +337,7 @@ public class MovimientoCaballo {
 
 	}
 
-	private static void anteriorPaso(JButton[][] buttons) {
+	public void anteriorPaso(JButton[][] buttons) {
 		System.out.println(moves.get(paso).getX() + "  " + moves.get(paso).getY());
 		int otro = paso;
 		int pasoaux = 0;
@@ -487,7 +380,7 @@ public class MovimientoCaballo {
 
 	}
 
-	private static void paintIntermediateCoordinates(JButton[][] buttons) {
+	public void mostrarPasos(JButton[][] buttons) {
 		int otro = 0;
 		for (Point point : intermedios) {
 
@@ -512,7 +405,7 @@ public class MovimientoCaballo {
 				buttons[x][y].setBackground(Color.green); // Cambiar el color del botón
 			}
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

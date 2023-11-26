@@ -139,7 +139,7 @@ public class Ventana extends JFrame {
 		e7.setFont(new Font("Monospaced", Font.BOLD, 14));
 		e7.setForeground(Color.black);
 		panelDos.add(e7);
-		
+
 		e8 = new JLabel(" ");
 		e8.setBounds(10, 230, 450, 20);
 		e8.setFont(new Font("Monospaced", Font.BOLD, 12));
@@ -250,6 +250,17 @@ public class Ventana extends JFrame {
 		add(img);
 
 	}
+	
+	public void reiniciar() {
+		for (int i = 0; i < botones.length; i++) {
+			for (int j = 0; j < botones[0].length; j++) {
+				botones[i][j].setText("");
+				botones[i][j].setBackground(Color.white);
+			}
+		}
+		
+		
+	}
 
 	public void resaltar(int x, int y) {
 
@@ -258,17 +269,17 @@ public class Ventana extends JFrame {
 		panelDos.repaint();
 
 	}
-	
+
 	public void resetearMatriz() {
-      System.out.println("hpla");
+		System.out.println("hpla");
 		botones = null;
 		panelDos.repaint();
 
-    }
+	}
 
-	public void resaltarCamino(int x, int y) {
+	public void resaltarCamino(int x, int y, Color c) {
 
-		botones[x][y].setBackground(Color.cyan);
+		botones[x][y].setBackground(c);
 
 		panelDos.repaint();
 
