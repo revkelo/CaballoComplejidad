@@ -16,16 +16,78 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-
+/**
+ * @author Kevin
+ * @author Daniela
+ * @author Nicolas
+ * 
+ * La clase Ventana representa la interfaz gráfica de usuario para la aplicación "Taller Caballito".
+ * Extiende la clase JFrame para crear la ventana principal.
+ */
 public class Ventana extends JFrame {
+	   /**
+     * Panel de la interfaz gráfica que contiene elementos relacionados con la configuración inicial.
+     */
+    private JPanel panelUno;
 
-	private JPanel panelUno, panelDos, panelTres, pmat;
-	private JLabel img, titulo, rta, e1, e2, e3, px, py, e4, e5, e6, e7, e8;
-	private JTextField alturaTextField, anchuraTextField, pxUnoTf, pyUnoTf, pxDosTf, pyDosTf, valorQ, valorP;
-	private JButton mostrar, siguiente, anterior, volver;
-	private JButton crearGridButton, resaltar, inicio;
-	private JButton[][] botones;
+    /**
+     * Panel de la interfaz gráfica que contiene elementos relacionados con la entrada de datos y la creación de la cuadrícula.
+     */
+    private JPanel panelDos;
 
+    /**
+     * Panel de la interfaz gráfica que contiene elementos relacionados con la visualización de pasos y opciones de navegación.
+     */
+    private JPanel panelTres;
+
+    /**
+     * Panel de la interfaz gráfica destinado a mostrar la cuadrícula de botones.
+     */
+    private JPanel pmat;
+
+    /**
+     * Etiqueta que muestra una imagen en la interfaz gráfica.
+     */
+    private JLabel img;
+
+    /**
+     * Etiqueta que muestra el título principal en la interfaz gráfica.
+     */
+    private JLabel titulo;
+
+    /**
+     * Etiqueta que muestra información o resultados en la interfaz gráfica.
+     */
+    private JLabel rta;
+
+    /**
+     * Etiquetas que contienen mensajes o información en la interfaz gráfica.
+     */
+    private JLabel e1, e2, e3, px, py, e4, e5, e6, e7, e8;
+
+    /**
+     * Campos de texto para la entrada de datos en la interfaz gráfica.
+     */
+    private JTextField alturaTextField, anchuraTextField, pxUnoTf, pyUnoTf, pxDosTf, pyDosTf, valorQ, valorP;
+
+    /**
+     * Botones que permiten realizar acciones específicas en la interfaz gráfica, como mostrar pasos, avanzar, retroceder y volver.
+     */
+    private JButton mostrar, siguiente, anterior, volver;
+
+    /**
+     * Botones que activan acciones relacionadas con la creación de la cuadrícula, resaltado y inicio en la interfaz gráfica.
+     */
+    private JButton crearGridButton, resaltar, inicio;
+
+    /**
+     * Matriz de botones que representa la cuadrícula en la interfaz gráfica.
+     */
+    private JButton[][] botones;
+
+	 /**
+     * Constructor de la clase Ventana. Inicializa y configura la interfaz gráfica.
+     */
 	public Ventana() {
 
 		setTitle("Vamo a pasar muchachos");
@@ -42,6 +104,9 @@ public class Ventana extends JFrame {
 
 	}
 
+	 /**
+     * Inicializa todos los componentes de la interfaz gráfica.
+     */
 	private void inicializarComponentes() {
 
 		// boton volver
@@ -143,7 +208,7 @@ public class Ventana extends JFrame {
 		e8 = new JLabel(" ");
 		e8.setBounds(10, 230, 450, 20);
 		e8.setFont(new Font("Monospaced", Font.BOLD, 12));
-		e8.setForeground(Color.black);
+		e8.setForeground(Color.orange);
 		panelDos.add(e8);
 
 		alturaTextField = new JTextField();
@@ -251,6 +316,10 @@ public class Ventana extends JFrame {
 
 	}
 
+	/**
+	 * Reinicia el contenido de la matriz de botones en la interfaz gráfica.
+	 * Establece el texto de todos los botones a una cadena vacía y restaura el color de fondo a blanco.
+	 */
 	public void reiniciar() {
 		for (int i = 0; i < botones.length; i++) {
 			for (int j = 0; j < botones[0].length; j++) {
@@ -261,6 +330,11 @@ public class Ventana extends JFrame {
 
 	}
 
+	/**
+	 * Resalta el botón en la posición dada cambiando su color de fondo.
+	 * @param x La coordenada x del botón.
+	 * @param y La coordenada y del botón.
+	 */
 	public void resaltar(int x, int y) {
 
 		botones[x][y].setBackground(new Color(116, 131, 171));
@@ -269,13 +343,23 @@ public class Ventana extends JFrame {
 
 	}
 
+	/**
+	 * Reinicia la matriz de botones, estableciéndola como nula.
+	 * Imprime un mensaje en la consola indicando que se ha realizado el reseteo.
+	 */
 	public void resetearMatriz() {
 		System.out.println("hpla");
 		botones = null;
 		panelDos.repaint();
 
 	}
-
+	
+	/**
+	 * Resalta el botón en la posición dada con un color específico.
+	 * @param x La coordenada x del botón.
+	 * @param y La coordenada y del botón.
+	 * @param c El color con el que se resaltará el botón.
+	 */
 	public void resaltarCamino(int x, int y, Color c) {
 
 		botones[x][y].setBackground(c);
@@ -284,6 +368,12 @@ public class Ventana extends JFrame {
 
 	}
 
+	/**
+	 * Cambia el texto del botón en la posición dada.
+	 * @param x La coordenada x del botón.
+	 * @param y La coordenada y del botón.
+	 * @param nom El nuevo texto que se establecerá en el botón.
+	 */
 	public void cambiar(int x, int y, String nom) {
 
 		botones[x][y].setText(nom);
@@ -293,6 +383,11 @@ public class Ventana extends JFrame {
 
 	}
 
+	/**
+	 * Crea una cuadrícula de botones en la interfaz gráfica con la altura y anchura especificadas.
+	 * @param altura La cantidad de filas en la cuadrícula.
+	 * @param anchura La cantidad de columnas en la cuadrícula.
+	 */
 	public void crearGrid(int altura, int anchura) {
 
 		pmat.removeAll();

@@ -13,22 +13,90 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class MovimientoCaballo {
-	private int altura;
-	private int ancho;
-	private int MAX_INTENTOS = 10000;
-	private int obt;
-	private ArrayList<Point> moves;
-	private ArrayList<Point> intermedios;
-	private boolean solucion;
-	private int[][] heuristic;
-	static int paso = 0, intermedio = 0;
 
+/**
+ * @author Kevin
+ * @author Daniela
+ * @author Nicolas
+ *  
+ * Clase MovimientoCaballo: representa un algoritmo para encontrar el recorrido para ir de un punto a a un punto b con p y q en un tablero.
+ */
+public class MovimientoCaballo {
+	/**
+	 * Altura del tablero para el recorrido .
+	 */
+	private int altura;
+
+	/**
+	 * Ancho del tablero para el recorrido.
+	 */
+	private int ancho;
+
+	/**
+	 * Número máximo de intentos para encontrar una solución al recorrido.
+	 */
+	private int MAX_INTENTOS = 10000;
+
+	/**
+	 * Contador de intentos realizados durante el proceso de búsqueda de solución.
+	 */
+	private int obt;
+
+	/**
+	 * Lista que almacena los movimientos realizados durante el recorrido.
+	 */
+	private ArrayList<Point> moves;
+
+	/**
+	 * Lista que almacena los movimientos intermedios entre las casillas durante el recorrido.
+	 */
+	private ArrayList<Point> intermedios;
+
+	/**
+	 * Indica si se ha encontrado una solución al recorrido.
+	 */
+	private boolean solucion;
+
+	/**
+	 * Matriz que almacena la heurística de distancia euclidiana para cada posición en el tablero.
+	 */
+	private int[][] heuristic;
+
+	/**
+	 * Variable estática que indica el paso actual en el recorrido .
+	 */
+	static int paso = 0;
+
+	/**
+	 * Variable estática que indica el índice actual en la lista de movimientos intermedios.
+	 */
+	static int intermedio = 0;
+
+	/**
+	 * Bandera que indica si la variable auxiliar está habilitada.
+	 */
+	boolean aux;
+
+	/**
+	 * Bandera que indica si la variable auxiliar 2 está habilitada.
+	 */
+	boolean aux2;
+
+
+	
+	/**
+     * Constructor de la clase MovimientoCaballo. Inicializa las listas y variables necesarias.
+     */
 	public MovimientoCaballo() {
 		moves = new ArrayList<Point>();
 		intermedios = new ArrayList<Point>();
 	}
 
+	/**
+     * Muestra el camino seguido desde la posición inicial hasta la posición objetivo.
+     * @param p Fila inicial.
+     * @param q Columna inicial.
+     */
 	public void camino(int p, int q) {
 		if (solucion == true) {
 			for (int i = 0; i < moves.size(); i++) {
@@ -43,7 +111,9 @@ public class MovimientoCaballo {
 		}
 
 	}
-
+	/**
+     * Imprime las coordenadas de los movimientos realizados.
+     */
 	public void printMoves() {
 		System.out.print("Moves: ");
 		for (int i = 0; i < moves.size(); i++) {
@@ -54,10 +124,22 @@ public class MovimientoCaballo {
 		System.out.println();
 	}
 
+	/**
+     * Verifica si una posición en el tablero es segura.
+     * @param x Fila
+     * @param y Columna.
+     * @param sol Matriz que representa el estado del tablero.
+     * @return Verdadero si la posición es segura, falso en caso contrario.
+     */
 	public boolean esSeguro(int x, int y, int sol[][]) {
 		return (x >= 0 && x < altura && y >= 0 && y < ancho && sol[x][y] == 0);
 	}
 
+	
+	 /**
+     * Imprime la solución del recorrido en el tablero.
+     * @param sol Matriz que representa el estado del tablero.
+     */
 	public void imprimirSolucion(int sol[][]) {
 		for (int x = 0; x < altura; x++) {
 			for (int y = 0; y < ancho; y++) {
@@ -67,6 +149,19 @@ public class MovimientoCaballo {
 		}
 	}
 
+	
+	/**
+     * Resuelve el recorrido en el tablero utilizando el algoritmo backtracking.
+     * @param altura Altura del tablero.
+     * @param ancho Ancho del tablero.
+     * @param filaInicio Fila de inicio. 
+     * @param colInicio Columna de inicio.
+     * @param filaObjetivo Fila objetivo del recorrido.
+     * @param colObjetivo Columna objetivo del recorrido.
+     * @param p Movimiento vertical .
+     * @param q Movimiento horizontal.
+     * @return Matriz que representa el estado final del tablero después del recorrido.
+     */
 	public int[][] resolverRecorridoCaballo(int altura, int ancho, int filaInicio, int colInicio, int filaObjetivo,
 			int colObjetivo, int p, int q) {
 		int sol[][] = new int[altura][ancho];
@@ -100,7 +195,22 @@ public class MovimientoCaballo {
 			return sol;
 		}
 	}
-
+	
+	
+	 /**
+     * Método utilitario para resolver el recorrido utilizando la técnica de backtracking.
+     * @param x Fila actual.
+     * @param y Columna actual.
+     * @param movimiento Número del movimiento actual.
+     * @param sol Matriz que representa el estado del tablero.
+     * @param xMovimiento Arreglo de movimientos verticales posibles.
+     * @param yMovimiento Arreglo de movimientos horizontales posibles.
+     * @param filaObjetivo Fila objetivo del recorrido.
+     * @param colObjetivo Columna objetivo del recorrido.
+     * @param intentos Número de intentos realizados.
+     * @param cotaSuperior Cota superior para la búsqueda.
+     * @return Verdadero si se encuentra una solución, falso en caso contrario.
+     */
 	public boolean resolverRecorridoCaballoUtil(int x, int y, int movimiento, int sol[][], int xMovimiento[],
 			int yMovimiento[], int filaObjetivo, int colObjetivo, int intentos, int cotaSuperior) {
 		int k, siguiente_x, siguiente_y;
@@ -147,6 +257,18 @@ public class MovimientoCaballo {
 		return false;
 	}
 
+	
+	/**
+     * Ordena los movimientos posibles basándose en la heurística de distancia euclidiana.
+     * @param x Fila actual.
+     * @param y Columna actual.
+     * @param sol Matriz que representa el estado del tablero.
+     * @param xMovimiento Arreglo de movimientos verticales posibles.
+     * @param yMovimiento Arreglo de movimientos horizontales posibles.
+     * @param filaObjetivo Fila objetivo del recorrido.
+     * @param colObjetivo Columna objetivo del recorrido.
+     * @return Lista de movimientos ordenados por distancia euclidiana ascendente.
+     */
 	private List<int[]> ordenarMovimientos(int x, int y, int sol[][], int xMovimiento[], int yMovimiento[],
 			int filaObjetivo, int colObjetivo) {
 		List<int[]> movimientos = new ArrayList<>();
@@ -161,16 +283,29 @@ public class MovimientoCaballo {
 			}
 		}
 
-		// Ordenar movimientos por distanciaEuclidiana ascendente
+
 		movimientos.sort(Comparator.comparingInt(mov -> heuristic[mov[0]][mov[1]]));
 
 		return movimientos;
 	}
 
+	/**
+     * Calcula la distancia euclidiana entre dos puntos en el tablero.
+     * @param x1 Fila del primer punto.
+     * @param y1 Columna del primer punto.
+     * @param x2 Fila del segundo punto.
+     * @param y2 Columna del segundo punto.
+     * @return Distancia euclidiana entre los dos puntos.
+     */
 	private int distanciaEuclidiana(int x1, int y1, int x2, int y2) {
 		return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
 	}
 
+	/**
+     * Precalcula la heurística de distancia euclidiana para cada posición en el tablero.
+     * @param filaObjetivo Fila objetivo del recorrido.
+     * @param colObjetivo Columna objetivo del recorrido.
+     */
 	private void precalculateHeuristic(int filaObjetivo, int colObjetivo) {
 		heuristic = new int[altura][ancho];
 		for (int x = 0; x < altura; x++) {
@@ -180,16 +315,34 @@ public class MovimientoCaballo {
 		}
 	}
 
+	  /**
+     * Muestra el movimiento en el tablero y la posición de las casillas disponibles.
+     * @param p Movimiento vertical.
+     * @param q Movimiento horizontal.
+     * @param filaInicial Fila inicial.
+     * @param columnaInicial Columna inicial.
+     * @param filaFinal Fila final.
+     * @param columnaFinal Columna final.
+     */
 	private void testKnightMovement(int p, int q, int filaInicial, int columnaInicial, int filaFinal,
 			int columnaFinal) {
 		if (intermedios.isEmpty()) {
 			intermedios.add(new Point(filaInicial, columnaInicial));
 		}
 
-		System.out.println("Tablero con casillas disponibles y posición del caballo:");
+		System.out.println("Tablero con casillas disponibles y posición :");
 		mostrarTablero(p, q, filaInicial, columnaInicial, filaFinal, columnaFinal);
 	}
 
+	/**
+	 * Muestra en la consola las casillas disponibles y la posición en el tablero.
+	 * @param p Movimiento vertical.
+	 * @param q Movimiento horizontal.
+	 * @param filaCaballo Fila actual.
+	 * @param columnaCaballo Columna actual.
+	 * @param filaFinal Fila final.
+	 * @param columnaFinal Columna final.
+	 */
 	private void mostrarTablero(int p, int q, int filaCaballo, int columnaCaballo, int filaFinal, int columnaFinal) {
 		int[][] matriz = { { p, q, 1 }, { q, p, 2 }, { -q, p, 3 }, { -p, q, 4 }, { -p, -q, 5 }, { -q, -p, 6 },
 				{ q, -p, 7 }, { p, -q, 8 } };
@@ -207,7 +360,15 @@ public class MovimientoCaballo {
 			}
 		}
 	}
-
+	
+	 /**
+     * Obtiene los movimientos intermedios y los almacena en la lista intermedios.
+     * @param caso Caso que determina la dirección del movimiento.
+     * @param filaCaballo Fila actual.
+     * @param columnaCaballo Columna actual.
+     * @param filaFinal Fila final.
+     * @param columnaFinal Columna final.
+     */
 	public void intermedios(int caso, int filaCaballo, int columnaCaballo, int filaFinal, int columnaFinal) {
 		switch (caso) {
 		case 1:
@@ -295,91 +456,113 @@ public class MovimientoCaballo {
 		}
 	}
 
+	 /**
+     * Método para avanzar al siguiente paso en la interfaz gráfica.
+     * @param buttons Matriz de botones que representa el tablero.
+     */
 	public void siguientePaso(JButton[][] buttons) {
-		System.out.println(moves.get(paso).getX() + "  " + moves.get(paso).getY());
-		int otro = paso;
-		int pasoaux = 0;
-		for (int i = intermedio; i < intermedios.size(); i++) {
-			for (int k = 0; k < buttons.length; k++) {
-				for (int j = 0; j < buttons[0].length; j++) {
-					buttons[k][j].setBackground(Color.white);
 
+		if (moves.isEmpty()) {
+			aux = false;
+		} else {
+			aux = true;
+			System.out.println(moves.get(paso).getX() + "  " + moves.get(paso).getY());
+			int otro = paso;
+			int pasoaux = 0;
+			for (int i = intermedio; i < intermedios.size(); i++) {
+				for (int k = 0; k < buttons.length; k++) {
+					for (int j = 0; j < buttons[0].length; j++) {
+						buttons[k][j].setBackground(Color.white);
+
+					}
 				}
+
+				if (moves.get(otro).getX() == intermedios.get(i).x && moves.get(otro).getY() == intermedios.get(i).y) {
+
+					int x = (int) intermedios.get(i).x;
+					int y = (int) intermedios.get(i).y;
+					buttons[x][y].setBackground(Color.yellow); // Cambiar el color del botón
+					paso = otro;
+					intermedio = i;
+					otro++;
+					pasoaux++;
+				} else {
+
+					int x = (int) intermedios.get(i).x;
+					int y = (int) intermedios.get(i).y;
+					buttons[x][y].setBackground(Color.green); // Cambiar el color del botón
+				}
+
+				if (pasoaux == 2) {
+					return;
+				}
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
-
-			if (moves.get(otro).getX() == intermedios.get(i).x && moves.get(otro).getY() == intermedios.get(i).y) {
-
-				int x = (int) intermedios.get(i).x;
-				int y = (int) intermedios.get(i).y;
-				buttons[x][y].setBackground(Color.yellow); // Cambiar el color del botón
-				paso = otro;
-				intermedio = i;
-				otro++;
-				pasoaux++;
-			} else {
-
-				int x = (int) intermedios.get(i).x;
-				int y = (int) intermedios.get(i).y;
-				buttons[x][y].setBackground(Color.green); // Cambiar el color del botón
-			}
-
-			if (pasoaux == 2) {
-				return;
-			}
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
 		}
-
 	}
 
+
+    /**
+     * Método para retroceder al paso anterior en la interfaz gráfica.
+     * @param buttons Matriz de botones que representa el tablero.
+     */
 	public void anteriorPaso(JButton[][] buttons) {
-		System.out.println(moves.get(paso).getX() + "  " + moves.get(paso).getY());
-		int otro = paso;
-		int pasoaux = 0;
-		for (int i = intermedio; i >= 0; i--) {
+		if (moves.isEmpty()) {
+			aux2 = false;
+		} else {
+			aux2 = true;
+			System.out.println(moves.get(paso).getX() + "  " + moves.get(paso).getY());
+			int otro = paso;
+			int pasoaux = 0;
+			for (int i = intermedio; i >= 0; i--) {
 
-			for (int k = 0; k < buttons.length; k++) {
-				for (int j = 0; j < buttons[0].length; j++) {
-					buttons[k][j].setBackground(Color.white);
+				for (int k = 0; k < buttons.length; k++) {
+					for (int j = 0; j < buttons[0].length; j++) {
+						buttons[k][j].setBackground(Color.white);
 
+					}
 				}
+
+				if (moves.get(otro).getX() == intermedios.get(i).x && moves.get(otro).getY() == intermedios.get(i).y) {
+
+					int x = (int) intermedios.get(i).x;
+					int y = (int) intermedios.get(i).y;
+					buttons[x][y].setBackground(Color.yellow);
+					paso = otro;
+					intermedio = i;
+					otro--;
+					pasoaux++;
+				} else {
+
+					int x = (int) intermedios.get(i).x;
+					int y = (int) intermedios.get(i).y;
+					buttons[x][y].setBackground(Color.green);
+				}
+
+				if (pasoaux == 2) {
+					return;
+				}
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
-
-			if (moves.get(otro).getX() == intermedios.get(i).x && moves.get(otro).getY() == intermedios.get(i).y) {
-
-				int x = (int) intermedios.get(i).x;
-				int y = (int) intermedios.get(i).y;
-				buttons[x][y].setBackground(Color.yellow);
-				paso = otro;
-				intermedio = i;
-				otro--;
-				pasoaux++;
-			} else {
-
-				int x = (int) intermedios.get(i).x;
-				int y = (int) intermedios.get(i).y;
-				buttons[x][y].setBackground(Color.green);
-			}
-
-			if (pasoaux == 2) {
-				return;
-			}
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
 		}
-
 	}
 
+	 /**
+     * Muestra todos los pasos en la interfaz gráfica.
+     * @param buttons Matriz de botones que representa el tablero.
+     */
 	public void mostrarPasos(JButton[][] buttons) {
 		int otro = 0;
 		for (Point point : intermedios) {
@@ -413,51 +596,133 @@ public class MovimientoCaballo {
 		}
 	}
 
+	/**
+	 * Obtiene la altura del tablero para el recorrido .
+	 * @return Altura del tablero.
+	 */
 	public int getAltura() {
-		return altura;
+	    return altura;
 	}
 
+	/**
+	 * Establece la altura del tablero para el recorrido .
+	 * @param altura Altura del tablero.
+	 */
 	public void setAltura(int altura) {
-		this.altura = altura;
+	    this.altura = altura;
 	}
 
+	/**
+	 * Obtiene el ancho del tablero para el recorrido .
+	 * @return Ancho del tablero.
+	 */
 	public int getAncho() {
-		return ancho;
+	    return ancho;
 	}
 
+	/**
+	 * Establece el ancho del tablero para el recorrido .
+	 * @param ancho Ancho del tablero.
+	 */
 	public void setAncho(int ancho) {
-		this.ancho = ancho;
+	    this.ancho = ancho;
 	}
 
+	/**
+	 * Obtiene el número máximo de intentos para encontrar una solución al recorrido .
+	 * @return Número máximo de intentos.
+	 */
 	public int getMAX_INTENTOS() {
-		return MAX_INTENTOS;
+	    return MAX_INTENTOS;
 	}
 
+	/**
+	 * Establece el número máximo de intentos para encontrar una solución al recorrido .
+	 * @param MAX_INTENTOS Número máximo de intentos.
+	 */
 	public void setMAX_INTENTOS(int MAX_INTENTOS) {
-		this.MAX_INTENTOS = MAX_INTENTOS;
+	    this.MAX_INTENTOS = MAX_INTENTOS;
 	}
 
+	/**
+	 * Obtiene el contador de intentos realizados durante el proceso de búsqueda de solución.
+	 * @return Contador de intentos.
+	 */
 	public int getObt() {
-		return obt;
+	    return obt;
 	}
 
+	/**
+	 * Establece el contador de intentos realizados durante el proceso de búsqueda de solución.
+	 * @param obt Contador de intentos.
+	 */
 	public void setObt(int obt) {
-		this.obt = obt;
+	    this.obt = obt;
 	}
 
+	/**
+	 * Obtiene la lista de movimientos realizados por el caballo durante el recorrido.
+	 * @return Lista de movimientos.
+	 */
 	public ArrayList<Point> getMoves() {
-		return moves;
+	    return moves;
 	}
 
+	/**
+	 * Establece la lista de movimientos realizados por el caballo durante el recorrido.
+	 * @param moves Lista de movimientos.
+	 */
 	public void setMoves(ArrayList<Point> moves) {
-		this.moves = moves;
+	    this.moves = moves;
 	}
 
+	/**
+	 * Verifica si se ha encontrado una solución al recorrido  .
+	 * @return true si hay una solución, false en caso contrario.
+	 */
 	public boolean isSolucion() {
-		return solucion;
+	    return solucion;
 	}
 
+	/**
+	 * Establece si se ha encontrado una solución al recorrido .
+	 * @param solucion true si hay una solución, false en caso contrario.
+	 */
 	public void setSolucion(boolean solucion) {
-		this.solucion = solucion;
+	    this.solucion = solucion;
 	}
+
+	/**
+	 * Obtiene el valor de la bandera auxiliar.
+	 * @return true si la bandera auxiliar está habilitada, false en caso contrario.
+	 */
+	public boolean isAux() {
+	    return aux;
+	}
+
+	/**
+	 * Establece el valor de la bandera auxiliar.
+	 * @param aux Valor de la bandera auxiliar.
+	 */
+	public void setAux(boolean aux) {
+	    this.aux = aux;
+	}
+
+	/**
+	 * Obtiene el valor de la bandera auxiliar 2.
+	 * @return true si la bandera auxiliar 2 está habilitada, false en caso contrario.
+	 */
+	public boolean isAux2() {
+	    return aux2;
+	}
+
+	/**
+	 * Establece el valor de la bandera auxiliar 2.
+	 * @param aux2 Valor de la bandera auxiliar 2.
+	 */
+	public void setAux2(boolean aux2) {
+	    this.aux2 = aux2;
+	}
+
+	
 }
