@@ -10,11 +10,11 @@ import view.Ventana;
 
 public class Controller implements ActionListener {
 	private Ventana vp;
-	private ArrayList<Point> cordenadas;
+	private ArrayList<Point> coordenadas;
 	private FachadaModel md;
 
 	public Controller() {
-		cordenadas = new ArrayList<Point>();
+		coordenadas = new ArrayList<Point>();
 		md = new FachadaModel();
 		vp = new Ventana();
 		actionListeners();
@@ -79,5 +79,4 @@ public class Controller implements ActionListener {
 		}
 
 	}
-
 }

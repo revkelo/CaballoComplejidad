@@ -24,7 +24,7 @@ public class MovimientoCaballo {
 		}
 		System.out.println();
 	}
-
+   
 	public boolean esSeguro(int x, int y, int sol[][]) {
 		return (x >= 0 && x < altura && y >= 0 && y < ancho && sol[x][y] == 0);
 	}
@@ -40,6 +40,7 @@ public class MovimientoCaballo {
 
 	public int[][] resolverRecorridoCaballo(int altura, int ancho, int filaInicio, int colInicio, int filaObjetivo,
 			int colObjetivo, int p, int q) {
+		
 		int sol[][] = new int[altura][ancho];
 
 		this.altura = altura;
