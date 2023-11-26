@@ -214,13 +214,11 @@ public class Ventana extends JFrame {
 		panelTres.add(rta);
 
 		siguiente = new JButton("Siguiente");
-		siguiente.setBounds(	130, 120, 100, 50);
+		siguiente.setBounds(130, 120, 100, 50);
 		siguiente.setFont(new Font("Monospaced", Font.BOLD, 10));
 		siguiente.setForeground(Color.black);
 		siguiente.setActionCommand("siguiente");
 		panelTres.add(siguiente);
-
-		
 
 		anterior = new JButton("Anterior");
 		anterior.setBounds(10, 120, 100, 50);
@@ -252,7 +250,7 @@ public class Ventana extends JFrame {
 		add(img);
 
 	}
-	
+
 	public void reiniciar() {
 		for (int i = 0; i < botones.length; i++) {
 			for (int j = 0; j < botones[0].length; j++) {
@@ -260,8 +258,7 @@ public class Ventana extends JFrame {
 				botones[i][j].setBackground(Color.white);
 			}
 		}
-		
-		
+
 	}
 
 	public void resaltar(int x, int y) {
