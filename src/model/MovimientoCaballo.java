@@ -1,3 +1,6 @@
+/**
+ * Clase que maneja la logica del movimiento en el paquete model
+ */
 package model;
 
 import java.awt.Color;
@@ -14,12 +17,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
+ * 
+ * Clase MovimientoCaballo: representa un algoritmo para encontrar el recorrido
+ * para ir de un punto a a un punto b con p y q en un tablero.
+ * 
  * @author Kevin
  * @author Daniela
  * @author Nicolas
  * 
- *         Clase MovimientoCaballo: representa un algoritmo para encontrar el
- *         recorrido para ir de un punto a a un punto b con p y q en un tablero.
  */
 public class MovimientoCaballo {
 	/**
@@ -35,7 +40,7 @@ public class MovimientoCaballo {
 	/**
 	 * Número máximo de intentos para encontrar una solución al recorrido.
 	 */
-	private int MAX_INTENTOS = 10000;
+	private int maxIntentos = 10000;
 
 	/**
 	 * Contador de intentos realizados durante el proceso de búsqueda de solución.
@@ -104,7 +109,7 @@ public class MovimientoCaballo {
 	public void camino(int p, int q) {
 		if (solucion == true) {
 			for (int i = 0; i < moves.size(); i++) {
-				System.out.println(moves.get(i).x + "  " + moves.get(i).y);
+//				System.out.println(moves.get(i).x + "  " + moves.get(i).y);
 				try {
 					testKnightMovement(p, q, moves.get(i).x, moves.get(i).y, moves.get(i + 1).x, moves.get(i + 1).y);
 				} catch (Exception e) {
@@ -126,7 +131,7 @@ public class MovimientoCaballo {
 				System.out.print("(" + moves.get(i).x + "," + moves.get(i).y + ") ");
 			}
 		}
-		System.out.println();
+//		System.out.println();
 	}
 
 	/**
@@ -151,7 +156,7 @@ public class MovimientoCaballo {
 			for (int y = 0; y < ancho; y++) {
 				System.out.print(sol[x][y] + " ");
 			}
-			System.out.println();
+//			System.out.println();
 		}
 	}
 
@@ -232,7 +237,7 @@ public class MovimientoCaballo {
 			obt++;
 		}
 
-		if (obt >= MAX_INTENTOS) {
+		if (obt >= maxIntentos) {
 			return false;
 		}
 
@@ -344,7 +349,7 @@ public class MovimientoCaballo {
 			intermedios.add(new Point(filaInicial, columnaInicial));
 		}
 
-		System.out.println("Tablero con casillas disponibles y posición :");
+//		System.out.println("Tablero con casillas disponibles y posición :");
 		mostrarTablero(p, q, filaInicial, columnaInicial, filaFinal, columnaFinal);
 	}
 
@@ -362,14 +367,14 @@ public class MovimientoCaballo {
 		int[][] matriz = { { p, q, 1 }, { q, p, 2 }, { -q, p, 3 }, { -p, q, 4 }, { -p, -q, 5 }, { -q, -p, 6 },
 				{ q, -p, 7 }, { p, -q, 8 } };
 
-		System.out.println("Casillas disponibles:");
+//		System.out.println("Casillas disponibles:");
 
 		for (int i = 0; i < matriz.length; i++) {
 			int nuevaFila = filaCaballo + matriz[i][0];
 			int nuevaColumna = columnaCaballo + matriz[i][1];
 			if (nuevaFila == filaFinal && nuevaColumna == columnaFinal) {
-				System.out.println(nuevaFila + " / " + columnaFinal);
-				System.out.println("son iguales el caso es el " + matriz[i][2]);
+//				System.out.println(nuevaFila + " / " + columnaFinal);
+//				System.out.println("son iguales el caso es el " + matriz[i][2]);
 				intermedios(matriz[i][2], filaCaballo, columnaCaballo, matriz[i][0], matriz[i][1]);
 				break;
 			}
@@ -483,7 +488,7 @@ public class MovimientoCaballo {
 			aux = false;
 		} else {
 			aux = true;
-			System.out.println(moves.get(paso).getX() + "  " + moves.get(paso).getY());
+//			System.out.println(moves.get(paso).getX() + "  " + moves.get(paso).getY());
 			int otro = paso;
 			int pasoaux = 0;
 			for (int i = intermedio; i < intermedios.size(); i++) {
@@ -498,7 +503,7 @@ public class MovimientoCaballo {
 
 					int x = (int) intermedios.get(i).x;
 					int y = (int) intermedios.get(i).y;
-					buttons[x][y].setBackground(Color.yellow); // Cambiar el color del botón
+					buttons[x][y].setBackground(new Color(253, 232, 98)); // Cambiar el color del botón
 					paso = otro;
 					intermedio = i;
 					otro++;
@@ -507,7 +512,7 @@ public class MovimientoCaballo {
 
 					int x = (int) intermedios.get(i).x;
 					int y = (int) intermedios.get(i).y;
-					buttons[x][y].setBackground(Color.green); // Cambiar el color del botón
+					buttons[x][y].setBackground(new Color(120, 206, 214)); // Cambiar el color del botón
 				}
 
 				if (pasoaux == 2) {
@@ -534,7 +539,7 @@ public class MovimientoCaballo {
 			aux2 = false;
 		} else {
 			aux2 = true;
-			System.out.println(moves.get(paso).getX() + "  " + moves.get(paso).getY());
+//			System.out.println(moves.get(paso).getX() + "  " + moves.get(paso).getY());
 			int otro = paso;
 			int pasoaux = 0;
 			for (int i = intermedio; i >= 0; i--) {
@@ -550,7 +555,7 @@ public class MovimientoCaballo {
 
 					int x = (int) intermedios.get(i).x;
 					int y = (int) intermedios.get(i).y;
-					buttons[x][y].setBackground(Color.yellow);
+					buttons[x][y].setBackground(new Color(253, 232, 98));
 					paso = otro;
 					intermedio = i;
 					otro--;
@@ -559,7 +564,7 @@ public class MovimientoCaballo {
 
 					int x = (int) intermedios.get(i).x;
 					int y = (int) intermedios.get(i).y;
-					buttons[x][y].setBackground(Color.green);
+					buttons[x][y].setBackground(new Color(120, 206, 214));
 				}
 
 				if (pasoaux == 2) {
@@ -596,14 +601,14 @@ public class MovimientoCaballo {
 
 				int x = (int) point.getX();
 				int y = (int) point.getY();
-				buttons[x][y].setBackground(Color.yellow); // Cambiar el color del botón
+				buttons[x][y].setBackground(new Color(253, 232, 98)); // Cambiar el color amarillo del botón
 				otro++;
 
 			} else {
 
 				int x = (int) point.getX();
 				int y = (int) point.getY();
-				buttons[x][y].setBackground(Color.green); // Cambiar el color del botón
+				buttons[x][y].setBackground(new Color(120, 206, 214)); // Cambiar el color azul del botón
 			}
 			try {
 				Thread.sleep(500);
@@ -650,25 +655,25 @@ public class MovimientoCaballo {
 		this.ancho = ancho;
 	}
 
-	/**
-	 * Obtiene el número máximo de intentos para encontrar una solución al recorrido
-	 * .
-	 * 
-	 * @return Número máximo de intentos.
-	 */
-	public int getMAX_INTENTOS() {
-		return MAX_INTENTOS;
-	}
-
-	/**
-	 * Establece el número máximo de intentos para encontrar una solución al
-	 * recorrido .
-	 * 
-	 * @param MAX_INTENTOS Número máximo de intentos.
-	 */
-	public void setMAX_INTENTOS(int MAX_INTENTOS) {
-		this.MAX_INTENTOS = MAX_INTENTOS;
-	}
+//	/**
+//	 * Obtiene el número máximo de intentos para encontrar una solución al recorrido
+//	 * .
+//	 * 
+//	 * @return Número máximo de intentos.
+//	 */
+//	public int getMAX_INTENTOS() {
+//		return maxIntentos;
+//	}
+//
+//	/**
+//	 * Establece el número máximo de intentos para encontrar una solución al
+//	 * recorrido .
+//	 * 
+//	 * @param MAX_INTENTOS Número máximo de intentos.
+//	 */
+//	public void setMAX_INTENTOS(int MAX_INTENTOS) {
+//		this.maxIntentos = MAX_INTENTOS;
+//	}
 
 	/**
 	 * Obtiene el contador de intentos realizados durante el proceso de búsqueda de

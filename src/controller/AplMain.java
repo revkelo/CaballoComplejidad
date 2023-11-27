@@ -1,3 +1,6 @@
+/**
+ * Clase Main que pertenece al paquete controller
+ */
 package controller;
 
 /**

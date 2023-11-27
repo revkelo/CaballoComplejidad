@@ -1,3 +1,6 @@
+/**
+ * Clase que pertenece al paquete view que maneja la interfaz grafica
+ */
 package view;
 
 import java.awt.BorderLayout;
@@ -16,78 +19,88 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+
 /**
+ * 
+ * La clase Ventana representa la interfaz gráfica de usuario para la aplicación
+ * "Taller Caballito". Extiende la clase JFrame para crear la ventana principal.
+ * 
  * @author Kevin
  * @author Daniela
  * @author Nicolas
  * 
- * La clase Ventana representa la interfaz gráfica de usuario para la aplicación "Taller Caballito".
- * Extiende la clase JFrame para crear la ventana principal.
  */
+
 public class Ventana extends JFrame {
-	   /**
-     * Panel de la interfaz gráfica que contiene elementos relacionados con la configuración inicial.
-     */
-    private JPanel panelUno;
 
-    /**
-     * Panel de la interfaz gráfica que contiene elementos relacionados con la entrada de datos y la creación de la cuadrícula.
-     */
-    private JPanel panelDos;
+	/**
+	 * Panel de la interfaz gráfica que contiene elementos relacionados con la
+	 * configuración inicial.
+	 */
+	private JPanel panelUno;
 
-    /**
-     * Panel de la interfaz gráfica que contiene elementos relacionados con la visualización de pasos y opciones de navegación.
-     */
-    private JPanel panelTres;
+	/**
+	 * Panel de la interfaz gráfica que contiene elementos relacionados con la
+	 * entrada de datos y la creación de la cuadrícula.
+	 */
+	private JPanel panelDos;
 
-    /**
-     * Panel de la interfaz gráfica destinado a mostrar la cuadrícula de botones.
-     */
-    private JPanel pmat;
+	/**
+	 * Panel de la interfaz gráfica que contiene elementos relacionados con la
+	 * visualización de pasos y opciones de navegación.
+	 */
+	private JPanel panelTres;
 
-    /**
-     * Etiqueta que muestra una imagen en la interfaz gráfica.
-     */
-    private JLabel img;
+	/**
+	 * Panel de la interfaz gráfica destinado a mostrar la cuadrícula de botones.
+	 */
+	private JPanel pmat;
 
-    /**
-     * Etiqueta que muestra el título principal en la interfaz gráfica.
-     */
-    private JLabel titulo;
+	/**
+	 * Etiqueta que muestra una imagen en la interfaz gráfica.
+	 */
+	private JLabel img, tiste;
 
-    /**
-     * Etiqueta que muestra información o resultados en la interfaz gráfica.
-     */
-    private JLabel rta;
+	/**
+	 * Etiqueta que muestra el título principal en la interfaz gráfica.
+	 */
+	private JLabel titulo;
 
-    /**
-     * Etiquetas que contienen mensajes o información en la interfaz gráfica.
-     */
-    private JLabel e1, e2, e3, px, py, e4, e5, e6, e7, e8;
+	/**
+	 * Etiqueta que muestra información o resultados en la interfaz gráfica.
+	 */
+	private JLabel rta;
 
-    /**
-     * Campos de texto para la entrada de datos en la interfaz gráfica.
-     */
-    private JTextField alturaTextField, anchuraTextField, pxUnoTf, pyUnoTf, pxDosTf, pyDosTf, valorQ, valorP;
+	/**
+	 * Etiquetas que contienen mensajes o información en la interfaz gráfica.
+	 */
+	private JLabel e1, e2, e3, px, py, e4, e5, e6, e7;
 
-    /**
-     * Botones que permiten realizar acciones específicas en la interfaz gráfica, como mostrar pasos, avanzar, retroceder y volver.
-     */
-    private JButton mostrar, siguiente, anterior, volver;
+	/**
+	 * Campos de texto para la entrada de datos en la interfaz gráfica.
+	 */
+	private JTextField alturaTextField, anchuraTextField, pxUnoTf, pyUnoTf, pxDosTf, pyDosTf, valorQ, valorP;
 
-    /**
-     * Botones que activan acciones relacionadas con la creación de la cuadrícula, resaltado y inicio en la interfaz gráfica.
-     */
-    private JButton crearGridButton, resaltar, inicio;
+	/**
+	 * Botones que permiten realizar acciones específicas en la interfaz gráfica,
+	 * como mostrar pasos, avanzar, retroceder y volver.
+	 */
+	private JButton mostrar, siguiente, anterior, volver;
 
-    /**
-     * Matriz de botones que representa la cuadrícula en la interfaz gráfica.
-     */
-    private JButton[][] botones;
+	/**
+	 * Botones que activan acciones relacionadas con la creación de la cuadrícula,
+	 * resaltado y inicio en la interfaz gráfica.
+	 */
+	private JButton crearGridButton, resaltar, inicio;
 
-	 /**
-     * Constructor de la clase Ventana. Inicializa y configura la interfaz gráfica.
-     */
+	/**
+	 * Matriz de botones que representa la cuadrícula en la interfaz gráfica.
+	 */
+	private JButton[][] botones;
+
+	/**
+	 * Constructor de la clase Ventana. Inicializa y configura la interfaz gráfica.
+	 */
 	public Ventana() {
 
 		setTitle("Vamo a pasar muchachos");
@@ -104,9 +117,9 @@ public class Ventana extends JFrame {
 
 	}
 
-	 /**
-     * Inicializa todos los componentes de la interfaz gráfica.
-     */
+	/**
+	 * Inicializa todos los componentes de la interfaz gráfica.
+	 */
 	private void inicializarComponentes() {
 
 		// boton volver
@@ -114,7 +127,8 @@ public class Ventana extends JFrame {
 		volver = new JButton("Volver");
 		volver.setBounds(80, 630, 100, 50);
 		volver.setFont(new Font("Monospaced", Font.BOLD, 10));
-		volver.setForeground(Color.black);
+		volver.setBackground(Color.black);
+		volver.setForeground(Color.white);
 		volver.setActionCommand("volver");
 		volver.setVisible(false);
 		add(volver);
@@ -205,11 +219,11 @@ public class Ventana extends JFrame {
 		e7.setForeground(Color.black);
 		panelDos.add(e7);
 
-		e8 = new JLabel(" ");
-		e8.setBounds(10, 230, 450, 20);
-		e8.setFont(new Font("Monospaced", Font.BOLD, 12));
-		e8.setForeground(Color.orange);
-		panelDos.add(e8);
+//		e8 = new JLabel(" ");
+//		e8.setBounds(10, 230, 450, 20);
+//		e8.setFont(new Font("Monospaced", Font.BOLD, 12));
+//		e8.setForeground(Color.orange);
+//		panelDos.add(e8);
 
 		alturaTextField = new JTextField();
 		alturaTextField.setBounds(180, 75, 40, 25);
@@ -221,25 +235,49 @@ public class Ventana extends JFrame {
 		anchuraTextField.setFont(new Font("Monospaced", Font.BOLD, 20));
 		panelDos.add(anchuraTextField);
 
+//		pxUnoTf = new JTextField();
+//		pxUnoTf.setBounds(145, 110, 30, 25);
+//		pxUnoTf.setFont(new Font("Monospaced", Font.BOLD, 15));
+//		panelDos.add(pxUnoTf);
+//
+//		pyUnoTf = new JTextField();
+//		pyUnoTf.setBounds(195, 110, 30, 25);
+//		pyUnoTf.setFont(new Font("Monospaced", Font.BOLD, 15));
+//		panelDos.add(pyUnoTf);
+//
+//		pxDosTf = new JTextField();
+//		pxDosTf.setBounds(145, 140, 30, 25);
+//		pxDosTf.setFont(new Font("Monospaced", Font.BOLD, 15));
+//		panelDos.add(pxDosTf);
+//
+//		pyDosTf = new JTextField();
+//		pyDosTf.setBounds(195, 140, 30, 25);
+//		pyDosTf.setFont(new Font("Monospaced", Font.BOLD, 15));
+//		panelDos.add(pyDosTf);
+
+		///
+
 		pxUnoTf = new JTextField();
-		pxUnoTf.setBounds(145, 110, 30, 25);
+		pxUnoTf.setBounds(195, 110, 30, 25);
 		pxUnoTf.setFont(new Font("Monospaced", Font.BOLD, 15));
 		panelDos.add(pxUnoTf);
 
 		pyUnoTf = new JTextField();
-		pyUnoTf.setBounds(195, 110, 30, 25);
+		pyUnoTf.setBounds(145, 110, 30, 25);
 		pyUnoTf.setFont(new Font("Monospaced", Font.BOLD, 15));
 		panelDos.add(pyUnoTf);
 
 		pxDosTf = new JTextField();
-		pxDosTf.setBounds(145, 140, 30, 25);
+		pxDosTf.setBounds(195, 140, 30, 25);
 		pxDosTf.setFont(new Font("Monospaced", Font.BOLD, 15));
 		panelDos.add(pxDosTf);
 
 		pyDosTf = new JTextField();
-		pyDosTf.setBounds(195, 140, 30, 25);
+		pyDosTf.setBounds(145, 140, 30, 25);
 		pyDosTf.setFont(new Font("Monospaced", Font.BOLD, 15));
 		panelDos.add(pyDosTf);
+
+		///
 
 		valorP = new JTextField();
 		valorP.setBounds(120, 170, 50, 25);
@@ -253,12 +291,16 @@ public class Ventana extends JFrame {
 
 		crearGridButton = new JButton("Crear Grid");
 		crearGridButton.setBounds(10, 280, 100, 30);
+		crearGridButton.setBackground(Color.black);
+		crearGridButton.setForeground(Color.white);
 		crearGridButton.setFont(new Font("Monospaced", Font.BOLD, 10));
 		crearGridButton.setActionCommand("Crear");
 		panelDos.add(crearGridButton);
 
 		resaltar = new JButton("Resaltar");
 		resaltar.setBounds(135, 280, 100, 30);
+		resaltar.setBackground(Color.black);
+		resaltar.setForeground(Color.white);
 		resaltar.setFont(new Font("Monospaced", Font.BOLD, 10));
 		resaltar.setActionCommand("Resaltar");
 		panelDos.add(resaltar);
@@ -272,7 +314,7 @@ public class Ventana extends JFrame {
 		panelTres.setBounds(20, 400, 250, 200);
 		add(panelTres);
 
-		rta = new JLabel("Ingrese los datos");
+		rta = new JLabel("");
 		rta.setBounds(40, 10, 450, 30);
 		rta.setFont(new Font("Showcard Gothic", Font.BOLD, 18));
 		rta.setForeground(Color.black);
@@ -280,25 +322,36 @@ public class Ventana extends JFrame {
 
 		siguiente = new JButton("Siguiente");
 		siguiente.setBounds(130, 120, 100, 50);
+		siguiente.setBackground(Color.black);
+		siguiente.setForeground(Color.white);
 		siguiente.setFont(new Font("Monospaced", Font.BOLD, 10));
-		siguiente.setForeground(Color.black);
 		siguiente.setActionCommand("siguiente");
+		siguiente.setVisible(false);
 		panelTres.add(siguiente);
 
 		anterior = new JButton("Anterior");
 		anterior.setBounds(10, 120, 100, 50);
+		anterior.setBackground(Color.black);
+		anterior.setForeground(Color.white);
 		anterior.setFont(new Font("Monospaced", Font.BOLD, 10));
-		anterior.setForeground(Color.black);
 		anterior.setActionCommand("anterior");
+		anterior.setVisible(false);
 		panelTres.add(anterior);
 
-		mostrar = new JButton("Mostrar pasos");
-		mostrar.setBounds(40, 60, 160, 50);
+		mostrar = new JButton("Mostrar pasos \nautomaticamente");
+		mostrar.setBounds(10, 60, 220, 50);
+		mostrar.setBackground(Color.black);
+		mostrar.setForeground(Color.white);
 		mostrar.setFont(new Font("Monospaced", Font.BOLD, 10));
-		mostrar.setForeground(Color.black);
+		mostrar.setVisible(false);
 		mostrar.setActionCommand("mostrar");
-
 		panelTres.add(mostrar);
+
+		tiste = new JLabel();
+		tiste.setBounds(50, 40, 130, 130);
+		tiste.setIcon(new ImageIcon("img/tiste.png"));
+		tiste.setVisible(false);
+		panelTres.add(tiste);
 
 		// panel matriz
 
@@ -318,7 +371,8 @@ public class Ventana extends JFrame {
 
 	/**
 	 * Reinicia el contenido de la matriz de botones en la interfaz gráfica.
-	 * Establece el texto de todos los botones a una cadena vacía y restaura el color de fondo a blanco.
+	 * Establece el texto de todos los botones a una cadena vacía y restaura el
+	 * color de fondo a blanco.
 	 */
 	public void reiniciar() {
 		for (int i = 0; i < botones.length; i++) {
@@ -332,30 +386,31 @@ public class Ventana extends JFrame {
 
 	/**
 	 * Resalta el botón en la posición dada cambiando su color de fondo.
+	 * 
 	 * @param x La coordenada x del botón.
 	 * @param y La coordenada y del botón.
 	 */
 	public void resaltar(int x, int y) {
 
-		botones[x][y].setBackground(new Color(116, 131, 171));
+		botones[x][y].setBackground(new Color(224, 195, 222));
 
 		panelDos.repaint();
 
 	}
 
 	/**
-	 * Reinicia la matriz de botones, estableciéndola como nula.
-	 * Imprime un mensaje en la consola indicando que se ha realizado el reseteo.
+	 * Reinicia la matriz de botones, estableciéndola como nula
 	 */
 	public void resetearMatriz() {
-		System.out.println("hpla");
+//		System.out.println("hpla");
 		botones = null;
 		panelDos.repaint();
 
 	}
-	
+
 	/**
 	 * Resalta el botón en la posición dada con un color específico.
+	 * 
 	 * @param x La coordenada x del botón.
 	 * @param y La coordenada y del botón.
 	 * @param c El color con el que se resaltará el botón.
@@ -370,22 +425,23 @@ public class Ventana extends JFrame {
 
 	/**
 	 * Cambia el texto del botón en la posición dada.
-	 * @param x La coordenada x del botón.
-	 * @param y La coordenada y del botón.
+	 * 
+	 * @param x   La coordenada x del botón.
+	 * @param y   La coordenada y del botón.
 	 * @param nom El nuevo texto que se establecerá en el botón.
 	 */
 	public void cambiar(int x, int y, String nom) {
 
 		botones[x][y].setText(nom);
-		;
-
 		panelDos.repaint();
 
 	}
 
 	/**
-	 * Crea una cuadrícula de botones en la interfaz gráfica con la altura y anchura especificadas.
-	 * @param altura La cantidad de filas en la cuadrícula.
+	 * Crea una cuadrícula de botones en la interfaz gráfica con la altura y anchura
+	 * especificadas.
+	 * 
+	 * @param altura  La cantidad de filas en la cuadrícula.
 	 * @param anchura La cantidad de columnas en la cuadrícula.
 	 */
 	public void crearGrid(int altura, int anchura) {
@@ -424,13 +480,32 @@ public class Ventana extends JFrame {
 		pmat.revalidate();
 		pmat.repaint();
 	}
+
+	/**
+	 * El metodo get funciona para tomar o llamar el atributo
+	 * 
+	 * @return the tiste
+	 */
+	public JLabel getTiste() {
+		return tiste;
+	}
+
+	/**
+	 * El metodo set funciona para actualizar el atributo
+	 * 
+	 * @param tiste the tiste to set
+	 */
+	public void setTiste(JLabel tiste) {
+		this.tiste = tiste;
+	}
+
 	/**
 	 * Obtiene el componente de etiqueta (JLabel) asociado a esta instancia.
 	 *
 	 * @return El componente de etiqueta (JLabel) asociado.
 	 */
 	public JLabel getRta() {
-	    return rta;
+		return rta;
 	}
 
 	/**
@@ -439,7 +514,7 @@ public class Ventana extends JFrame {
 	 * @param rta El nuevo componente de etiqueta (JLabel) a establecer.
 	 */
 	public void setRta(JLabel rta) {
-	    this.rta = rta;
+		this.rta = rta;
 	}
 
 	/**
@@ -448,7 +523,7 @@ public class Ventana extends JFrame {
 	 * @return El botón (JButton) "Mostrar" asociado.
 	 */
 	public JButton getMostrar() {
-	    return mostrar;
+		return mostrar;
 	}
 
 	/**
@@ -457,7 +532,7 @@ public class Ventana extends JFrame {
 	 * @param mostrar El nuevo botón (JButton) "Mostrar" a establecer.
 	 */
 	public void setMostrar(JButton mostrar) {
-	    this.mostrar = mostrar;
+		this.mostrar = mostrar;
 	}
 
 	/**
@@ -466,7 +541,7 @@ public class Ventana extends JFrame {
 	 * @return El botón (JButton) "Siguiente" asociado.
 	 */
 	public JButton getSiguiente() {
-	    return siguiente;
+		return siguiente;
 	}
 
 	/**
@@ -475,7 +550,7 @@ public class Ventana extends JFrame {
 	 * @param siguiente El nuevo botón (JButton) "Siguiente" a establecer.
 	 */
 	public void setSiguiente(JButton siguiente) {
-	    this.siguiente = siguiente;
+		this.siguiente = siguiente;
 	}
 
 	/**
@@ -484,7 +559,7 @@ public class Ventana extends JFrame {
 	 * @return El botón (JButton) "Anterior" asociado.
 	 */
 	public JButton getAnterior() {
-	    return anterior;
+		return anterior;
 	}
 
 	/**
@@ -493,7 +568,7 @@ public class Ventana extends JFrame {
 	 * @param anterior El nuevo botón (JButton) "Anterior" a establecer.
 	 */
 	public void setAnterior(JButton anterior) {
-	    this.anterior = anterior;
+		this.anterior = anterior;
 	}
 
 	/**
@@ -502,7 +577,7 @@ public class Ventana extends JFrame {
 	 * @return El botón (JButton) "Volver" asociado.
 	 */
 	public JButton getVolver() {
-	    return volver;
+		return volver;
 	}
 
 	/**
@@ -511,7 +586,7 @@ public class Ventana extends JFrame {
 	 * @param volver El nuevo botón (JButton) "Volver" a establecer.
 	 */
 	public void setVolver(JButton volver) {
-	    this.volver = volver;
+		this.volver = volver;
 	}
 
 	/**
@@ -520,7 +595,7 @@ public class Ventana extends JFrame {
 	 * @return El panel (JPanel) asociado.
 	 */
 	public JPanel getPmat() {
-	    return pmat;
+		return pmat;
 	}
 
 	/**
@@ -529,16 +604,16 @@ public class Ventana extends JFrame {
 	 * @param pmat El nuevo panel (JPanel) a establecer.
 	 */
 	public void setPmat(JPanel pmat) {
-	    this.pmat = pmat;
+		this.pmat = pmat;
 	}
-	
+
 	/**
 	 * Obtiene el panel (JPanel) llamado "panelTres" asociado a esta instancia.
 	 *
 	 * @return El panel (JPanel) "panelTres" asociado.
 	 */
 	public JPanel getPanelTres() {
-	    return panelTres;
+		return panelTres;
 	}
 
 	/**
@@ -547,7 +622,7 @@ public class Ventana extends JFrame {
 	 * @param panelTres El nuevo panel (JPanel) "panelTres" a establecer.
 	 */
 	public void setPanelTres(JPanel panelTres) {
-	    this.panelTres = panelTres;
+		this.panelTres = panelTres;
 	}
 
 	/**
@@ -556,7 +631,7 @@ public class Ventana extends JFrame {
 	 * @return El panel (JPanel) "panelUno" asociado.
 	 */
 	public JPanel getPanelUno() {
-	    return panelUno;
+		return panelUno;
 	}
 
 	/**
@@ -565,7 +640,7 @@ public class Ventana extends JFrame {
 	 * @param panelUno El nuevo panel (JPanel) "panelUno" a establecer.
 	 */
 	public void setPanelUno(JPanel panelUno) {
-	    this.panelUno = panelUno;
+		this.panelUno = panelUno;
 	}
 
 	/**
@@ -574,7 +649,7 @@ public class Ventana extends JFrame {
 	 * @return El panel (JPanel) "panelDos" asociado.
 	 */
 	public JPanel getPanelDos() {
-	    return panelDos;
+		return panelDos;
 	}
 
 	/**
@@ -583,7 +658,7 @@ public class Ventana extends JFrame {
 	 * @param panelDos El nuevo panel (JPanel) "panelDos" a establecer.
 	 */
 	public void setPanelDos(JPanel panelDos) {
-	    this.panelDos = panelDos;
+		this.panelDos = panelDos;
 	}
 
 	/**
@@ -592,7 +667,7 @@ public class Ventana extends JFrame {
 	 * @return La etiqueta (JLabel) "titulo" asociada.
 	 */
 	public JLabel getTitulo() {
-	    return titulo;
+		return titulo;
 	}
 
 	/**
@@ -601,7 +676,7 @@ public class Ventana extends JFrame {
 	 * @param titulo La nueva etiqueta (JLabel) "titulo" a establecer.
 	 */
 	public void setTitulo(JLabel titulo) {
-	    this.titulo = titulo;
+		this.titulo = titulo;
 	}
 
 	/**
@@ -610,7 +685,7 @@ public class Ventana extends JFrame {
 	 * @return El botón (JButton) "inicio" asociado.
 	 */
 	public JButton getInicio() {
-	    return inicio;
+		return inicio;
 	}
 
 	/**
@@ -619,7 +694,7 @@ public class Ventana extends JFrame {
 	 * @param inicio El nuevo botón (JButton) "inicio" a establecer.
 	 */
 	public void setInicio(JButton inicio) {
-	    this.inicio = inicio;
+		this.inicio = inicio;
 	}
 
 	/**
@@ -628,7 +703,7 @@ public class Ventana extends JFrame {
 	 * @return El botón (JButton) "resaltar" asociado.
 	 */
 	public JButton getResaltar() {
-	    return resaltar;
+		return resaltar;
 	}
 
 	/**
@@ -637,61 +712,70 @@ public class Ventana extends JFrame {
 	 * @param resaltar El nuevo botón (JButton) "resaltar" a establecer.
 	 */
 	public void setResaltar(JButton resaltar) {
-	    this.resaltar = resaltar;
+		this.resaltar = resaltar;
 	}
 
 	/**
-	 * Obtiene una matriz bidimensional de botones (JButton) llamada "botones" asociada a esta instancia.
+	 * Obtiene una matriz bidimensional de botones (JButton) llamada "botones"
+	 * asociada a esta instancia.
 	 *
 	 * @return La matriz bidimensional de botones (JButton) "botones" asociada.
 	 */
 	public JButton[][] getBotones() {
-	    return botones;
+		return botones;
 	}
 
 	/**
-	 * Establece una matriz bidimensional de botones (JButton) llamada "botones" asociada a esta instancia.
+	 * Establece una matriz bidimensional de botones (JButton) llamada "botones"
+	 * asociada a esta instancia.
 	 *
-	 * @param botones La nueva matriz bidimensional de botones (JButton) "botones" a establecer.
+	 * @param botones La nueva matriz bidimensional de botones (JButton) "botones" a
+	 *                establecer.
 	 */
 	public void setBotones(JButton[][] botones) {
-	    this.botones = botones;
+		this.botones = botones;
 	}
 
 	/**
-	 * Obtiene el campo de texto (JTextField) llamado "alturaTextField" asociado a esta instancia.
+	 * Obtiene el campo de texto (JTextField) llamado "alturaTextField" asociado a
+	 * esta instancia.
 	 *
 	 * @return El campo de texto (JTextField) "alturaTextField" asociado.
 	 */
 	public JTextField getAlturaTextField() {
-	    return alturaTextField;
+		return alturaTextField;
 	}
 
 	/**
-	 * Establece el campo de texto (JTextField) llamado "alturaTextField" asociado a esta instancia.
+	 * Establece el campo de texto (JTextField) llamado "alturaTextField" asociado a
+	 * esta instancia.
 	 *
-	 * @param alturaTextField El nuevo campo de texto (JTextField) "alturaTextField" a establecer.
+	 * @param alturaTextField El nuevo campo de texto (JTextField) "alturaTextField"
+	 *                        a establecer.
 	 */
 	public void setAlturaTextField(JTextField alturaTextField) {
-	    this.alturaTextField = alturaTextField;
+		this.alturaTextField = alturaTextField;
 	}
 
 	/**
-	 * Obtiene el campo de texto (JTextField) llamado "anchuraTextField" asociado a esta instancia.
+	 * Obtiene el campo de texto (JTextField) llamado "anchuraTextField" asociado a
+	 * esta instancia.
 	 *
 	 * @return El campo de texto (JTextField) "anchuraTextField" asociado.
 	 */
 	public JTextField getAnchuraTextField() {
-	    return anchuraTextField;
+		return anchuraTextField;
 	}
 
 	/**
-	 * Establece el campo de texto (JTextField) llamado "anchuraTextField" asociado a esta instancia.
+	 * Establece el campo de texto (JTextField) llamado "anchuraTextField" asociado
+	 * a esta instancia.
 	 *
-	 * @param anchuraTextField El nuevo campo de texto (JTextField) "anchuraTextField" a establecer.
+	 * @param anchuraTextField El nuevo campo de texto (JTextField)
+	 *                         "anchuraTextField" a establecer.
 	 */
 	public void setAnchuraTextField(JTextField anchuraTextField) {
-	    this.anchuraTextField = anchuraTextField;
+		this.anchuraTextField = anchuraTextField;
 	}
 
 	/**
@@ -701,161 +785,157 @@ public class Ventana extends JFrame {
 	 */
 
 	public JPanel getPanel() {
-	    return panelDos;
+		return panelDos;
 	}
 
-	
 	/**
 	 * Establece el panel (JPanel) llamado "panel" asociado a esta instancia.
 	 *
 	 * @param panel El nuevo panel (JPanel) a establecer.
 	 */
 	public void setPanel(JPanel panel) {
-	    this.panelDos = panel;
+		this.panelDos = panel;
 	}
 
 	/**
-	 * Obtiene el botón (JButton) llamado "crearGridButton" asociado a esta instancia.
+	 * Obtiene el botón (JButton) llamado "crearGridButton" asociado a esta
+	 * instancia.
 	 *
 	 * @return El botón (JButton) "crearGridButton" asociado.
 	 */
 	public JButton getCrearGridButton() {
-	    return crearGridButton;
+		return crearGridButton;
 	}
 
 	/**
-	 * Establece el botón (JButton) llamado "crearGridButton" asociado a esta instancia.
+	 * Establece el botón (JButton) llamado "crearGridButton" asociado a esta
+	 * instancia.
 	 *
-	 * @param crearGridButton El nuevo botón (JButton) "crearGridButton" a establecer.
+	 * @param crearGridButton El nuevo botón (JButton) "crearGridButton" a
+	 *                        establecer.
 	 */
 	public void setCrearGridButton(JButton crearGridButton) {
-	    this.crearGridButton = crearGridButton;
+		this.crearGridButton = crearGridButton;
 	}
 
 	/**
-	 * Obtiene el campo de texto (JTextField) llamado "pxUnoTf" asociado a esta instancia.
+	 * Obtiene el campo de texto (JTextField) llamado "pxUnoTf" asociado a esta
+	 * instancia.
 	 *
 	 * @return El campo de texto (JTextField) "pxUnoTf" asociado.
 	 */
 	public JTextField getPxUnoTf() {
-	    return pxUnoTf;
+		return pxUnoTf;
 	}
 
 	/**
-	 * Establece el campo de texto (JTextField) llamado "pxUnoTf" asociado a esta instancia.
+	 * Establece el campo de texto (JTextField) llamado "pxUnoTf" asociado a esta
+	 * instancia.
 	 *
 	 * @param pxUnoTf El nuevo campo de texto (JTextField) "pxUnoTf" a establecer.
 	 */
 	public void setPxUnoTf(JTextField pxUnoTf) {
-	    this.pxUnoTf = pxUnoTf;
+		this.pxUnoTf = pxUnoTf;
 	}
 
 	/**
-	 * Obtiene el campo de texto (JTextField) llamado "pyUnoTf" asociado a esta instancia.
+	 * Obtiene el campo de texto (JTextField) llamado "pyUnoTf" asociado a esta
+	 * instancia.
 	 *
 	 * @return El campo de texto (JTextField) "pyUnoTf" asociado.
 	 */
 	public JTextField getPyUnoTf() {
-	    return pyUnoTf;
+		return pyUnoTf;
 	}
 
 	/**
-	 * Establece el campo de texto (JTextField) llamado "pyUnoTf" asociado a esta instancia.
+	 * Establece el campo de texto (JTextField) llamado "pyUnoTf" asociado a esta
+	 * instancia.
 	 *
 	 * @param pyUnoTf El nuevo campo de texto (JTextField) "pyUnoTf" a establecer.
 	 */
 	public void setPyUnoTf(JTextField pyUnoTf) {
-	    this.pyUnoTf = pyUnoTf;
+		this.pyUnoTf = pyUnoTf;
 	}
 
 	/**
-	 * Obtiene el campo de texto (JTextField) llamado "pxDosTf" asociado a esta instancia.
+	 * Obtiene el campo de texto (JTextField) llamado "pxDosTf" asociado a esta
+	 * instancia.
 	 *
 	 * @return El campo de texto (JTextField) "pxDosTf" asociado.
 	 */
 	public JTextField getPxDosTf() {
-	    return pxDosTf;
+		return pxDosTf;
 	}
 
 	/**
-	 * Establece el campo de texto (JTextField) llamado "pxDosTf" asociado a esta instancia.
+	 * Establece el campo de texto (JTextField) llamado "pxDosTf" asociado a esta
+	 * instancia.
 	 *
 	 * @param pxDosTf El nuevo campo de texto (JTextField) "pxDosTf" a establecer.
 	 */
 	public void setPxDosTf(JTextField pxDosTf) {
-	    this.pxDosTf = pxDosTf;
+		this.pxDosTf = pxDosTf;
 	}
 
 	/**
-	 * Obtiene el campo de texto (JTextField) llamado "pyDosTf" asociado a esta instancia.
+	 * Obtiene el campo de texto (JTextField) llamado "pyDosTf" asociado a esta
+	 * instancia.
 	 *
 	 * @return El campo de texto (JTextField) "pyDosTf" asociado.
 	 */
 	public JTextField getPyDosTf() {
-	    return pyDosTf;
+		return pyDosTf;
 	}
 
 	/**
-	 * Establece el campo de texto (JTextField) llamado "pyDosTf" asociado a esta instancia.
+	 * Establece el campo de texto (JTextField) llamado "pyDosTf" asociado a esta
+	 * instancia.
 	 *
 	 * @param pyDosTf El nuevo campo de texto (JTextField) "pyDosTf" a establecer.
 	 */
 	public void setPyDosTf(JTextField pyDosTf) {
-	    this.pyDosTf = pyDosTf;
+		this.pyDosTf = pyDosTf;
 	}
 
 	/**
-	 * Obtiene el campo de texto (JTextField) llamado "valorQ" asociado a esta instancia.
+	 * Obtiene el campo de texto (JTextField) llamado "valorQ" asociado a esta
+	 * instancia.
 	 *
 	 * @return El campo de texto (JTextField) "valorQ" asociado.
 	 */
 	public JTextField getValorQ() {
-	    return valorQ;
+		return valorQ;
 	}
 
 	/**
-	 * Establece el campo de texto (JTextField) llamado "valorQ" asociado a esta instancia.
+	 * Establece el campo de texto (JTextField) llamado "valorQ" asociado a esta
+	 * instancia.
 	 *
 	 * @param valorQ El nuevo campo de texto (JTextField) "valorQ" a establecer.
 	 */
 	public void setValorQ(JTextField valorQ) {
-	    this.valorQ = valorQ;
+		this.valorQ = valorQ;
 	}
 
 	/**
-	 * Obtiene el campo de texto (JTextField) llamado "valorP" asociado a esta instancia.
+	 * Obtiene el campo de texto (JTextField) llamado "valorP" asociado a esta
+	 * instancia.
 	 *
 	 * @return El campo de texto (JTextField) "valorP" asociado.
 	 */
 	public JTextField getValorP() {
-	    return valorP;
+		return valorP;
 	}
 
 	/**
-	 * Establece el campo de texto (JTextField) llamado "valorP" asociado a esta instancia.
+	 * Establece el campo de texto (JTextField) llamado "valorP" asociado a esta
+	 * instancia.
 	 *
 	 * @param valorP El nuevo campo de texto (JTextField) "valorP" a establecer.
 	 */
 	public void setValorP(JTextField valorP) {
-	    this.valorP = valorP;
-	}
-
-	/**
-	 * Obtiene la etiqueta (JLabel) llamada "e8" asociada a esta instancia.
-	 *
-	 * @return La etiqueta (JLabel) "e8" asociada.
-	 */
-	public JLabel getE8() {
-	    return e8;
-	}
-
-	/**
-	 * Establece la etiqueta (JLabel) llamada "e8" asociada a esta instancia.
-	 *
-	 * @param e8 La nueva etiqueta (JLabel) "e8" a establecer.
-	 */
-	public void setE8(JLabel e8) {
-	    this.e8 = e8;
+		this.valorP = valorP;
 	}
 
 }
