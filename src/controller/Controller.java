@@ -65,7 +65,7 @@ public class Controller implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
-
+System.out.println(comando);
 		if (comando.equals("mostrar")) {
 			new Thread(new Runnable() {
 				public void run() {
@@ -79,6 +79,7 @@ public class Controller implements ActionListener {
 				new Thread(new Runnable() {
 					public void run() {
 						md.getMc().siguientePaso(vp.getBotones());
+						System.out.println("siguyebnte");
 					}
 				}).start();
 			} else {
