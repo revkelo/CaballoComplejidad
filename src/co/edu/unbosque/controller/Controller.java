@@ -157,52 +157,57 @@ public class Controller implements ActionListener {
 							&& colinicio < anchura && colinicio >= 0 && colObjetivo < anchura && colObjetivo >= 0) {
 
 						if (p > 0 && q > 0) {
+							if (!((filaInicio == filaObjetivo) && (colinicio == colObjetivo))) {
 
-							if (altura >= 2 && altura <= 100 && anchura >= 2 && anchura <= 100) {
-								view.getVp().crearGrid(altura, anchura);
-								int aux[][] = md.getMc().resolverRecorridoCaballo(altura, anchura, filaInicio,
-										colinicio, filaObjetivo, colObjetivo, p, q);
-								md.getMc().camino(p, q);
+								if (altura >= 2 && altura <= 100 && anchura >= 2 && anchura <= 100) {
+									view.getVp().crearGrid(altura, anchura);
+									int aux[][] = md.getMc().resolverRecorridoCaballo(altura, anchura, filaInicio,
+											colinicio, filaObjetivo, colObjetivo, p, q);
+									md.getMc().camino(p, q);
 
-								view.getVp().getAlturaTextField().setText("");
-								view.getVp().getAnchuraTextField().setText("");
-								view.getVp().getPxUnoTf().setText("");
-								view.getVp().getPyUnoTf().setText("");
-								view.getVp().getPxDosTf().setText("");
-								view.getVp().getPyDosTf().setText("");
-								view.getVp().getValorP().setText("");
-								view.getVp().getValorQ().setText("");
+									view.getVp().getAlturaTextField().setText("");
+									view.getVp().getAnchuraTextField().setText("");
+									view.getVp().getPxUnoTf().setText("");
+									view.getVp().getPyUnoTf().setText("");
+									view.getVp().getPxDosTf().setText("");
+									view.getVp().getPyDosTf().setText("");
+									view.getVp().getValorP().setText("");
+									view.getVp().getValorQ().setText("");
 
-								for (int i = 0; i < aux.length; i++) {
-									for (int j = 0; j < aux[0].length; j++) {
-										view.getVp().cambiar(i, j, aux[i][j] + "");
+									for (int i = 0; i < aux.length; i++) {
+										for (int j = 0; j < aux[0].length; j++) {
+											view.getVp().cambiar(i, j, aux[i][j] + "");
+										}
+
 									}
+									if (md.getMc().isSolucion()) {
 
-								}
-								if (md.getMc().isSolucion()) {
+										view.getVp().getRta().setText("Si hay solucion");
+										view.getVp().getTiste().setVisible(false);
+										view.getVp().getAnterior().setVisible(true);
+										view.getVp().getSiguiente().setVisible(true);
+										view.getVp().getMostrar().setVisible(true);
 
-									view.getVp().getRta().setText("Si hay solucion");
-									view.getVp().getTiste().setVisible(false);
-									view.getVp().getAnterior().setVisible(true);
-									view.getVp().getSiguiente().setVisible(true);
-									view.getVp().getMostrar().setVisible(true);
-
+									} else {
+										view.getVp().getRta().setText("No hay solucion");
+										view.getVp().getTiste().setVisible(true);
+										view.getVp().getAnterior().setVisible(false);
+										view.getVp().getSiguiente().setVisible(false);
+										view.getVp().getMostrar().setVisible(false);
+									}
 								} else {
-									view.getVp().getRta().setText("No hay solucion");
-									view.getVp().getTiste().setVisible(true);
-									view.getVp().getAnterior().setVisible(false);
-									view.getVp().getSiguiente().setVisible(false);
-									view.getVp().getMostrar().setVisible(false);
-								}
-							} else {
 
-								view.getMsj().showError("Matriz no valida");
+									view.getMsj().showError("Matriz no valida");
 
 //						view.getVp().getE8().setText("Matriz no valdia");
+								}
+							}else {
+								view.getMsj().showError("coordenadas iniciales iguales a las coordenadas finales");
 							}
 
 						} else {
-							view.getMsj().showError("Valores invalidos para p y/o q");
+							view.getMsj().showError(
+									"Valores invalidos para p y/o q");
 						}
 
 					} else {
