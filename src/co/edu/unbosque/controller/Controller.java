@@ -3,10 +3,8 @@
  */
 package co.edu.unbosque.controller;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 
 import co.edu.unbosque.model.FachadaModel;
 import co.edu.unbosque.view.FachadaView;
@@ -56,10 +54,10 @@ public class Controller implements ActionListener {
 	}
 
 	/**
-	 * Restablece completamente la interfaz gráfica y los datos asociados.
-	 * Limpia y restablece los campos de entrada de la vista, oculta elementos visuales,
-	 * limpia la matriz en el controlador, y reinicia la visualización de la matriz en la vista.
-	 * También oculta elementos adicionales como botones y textos.
+	 * Restablece completamente la interfaz gráfica y los datos asociados. Limpia y
+	 * restablece los campos de entrada de la vista, oculta elementos visuales,
+	 * limpia la matriz en el controlador, y reinicia la visualización de la matriz
+	 * en la vista. También oculta elementos adicionales como botones y textos.
 	 */
 	public void resetTotal() {
 		view.getVp().getAlturaTextField().setText("");
@@ -96,8 +94,12 @@ public class Controller implements ActionListener {
 		if (comando.equals("mostrar")) {
 			new Thread(new Runnable() {
 				public void run() {
+					view.getVp().getCrearGridButton().setVisible(false);
+					view.getVp().getResaltar().setVisible(false);
 					md.getMc().mostrarPasos(view.getVp().getBotones(), view.getVp().getMostrar(),
 							view.getVp().getAnterior(), view.getVp().getSiguiente());
+					view.getVp().getCrearGridButton().setVisible(true);
+					view.getVp().getResaltar().setVisible(true);
 				}
 			}).start();
 		}
@@ -189,6 +191,7 @@ public class Controller implements ActionListener {
 									if (md.getMc().isSolucion()) {
 
 										view.getVp().getRta().setText("Si hay solucion");
+										view.getVp().getResaltar().setVisible(true);
 										view.getVp().getTiste().setVisible(false);
 										view.getVp().getAnterior().setVisible(true);
 										view.getVp().getSiguiente().setVisible(true);
@@ -196,6 +199,7 @@ public class Controller implements ActionListener {
 
 									} else {
 										view.getVp().getRta().setText("No hay solucion");
+										view.getVp().getResaltar().setVisible(false);
 										view.getVp().getTiste().setVisible(true);
 										view.getVp().getAnterior().setVisible(false);
 										view.getVp().getSiguiente().setVisible(false);
@@ -207,13 +211,12 @@ public class Controller implements ActionListener {
 
 //						view.getVp().getE8().setText("Matriz no valdia");
 								}
-							}else {
+							} else {
 								view.getMsj().showError("coordenadas iniciales iguales a las coordenadas finales");
 							}
 
 						} else {
-							view.getMsj().showError(
-									"Valores invalidos para p y/o q");
+							view.getMsj().showError("Valores invalidos para p y/o q");
 						}
 
 					} else {
