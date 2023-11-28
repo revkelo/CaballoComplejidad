@@ -37,7 +37,7 @@ import javax.swing.border.LineBorder;
 public class Ventana extends JFrame {
 
 	/**
-	 * Panel que maneja la matriz de botones 
+	 * Panel que maneja la matriz de botones
 	 */
 	private JPanel panelBotones;
 	/**
@@ -139,7 +139,7 @@ public class Ventana extends JFrame {
 	private void inicializarComponentes() {
 
 		panelBotones = new JPanel();
-		
+
 		// boton volver
 
 		volver = new JButton("Volver");
@@ -237,12 +237,6 @@ public class Ventana extends JFrame {
 		e7.setForeground(Color.black);
 		panelDos.add(e7);
 
-//		e8 = new JLabel(" ");
-//		e8.setBounds(10, 230, 450, 20);
-//		e8.setFont(new Font("Monospaced", Font.BOLD, 12));
-//		e8.setForeground(Color.orange);
-//		panelDos.add(e8);
-
 		alturaTextField = new JTextField();
 		alturaTextField.setBounds(180, 75, 40, 25);
 		alturaTextField.setFont(new Font("Monospaced", Font.BOLD, 20));
@@ -252,28 +246,6 @@ public class Ventana extends JFrame {
 		anchuraTextField.setBounds(70, 75, 40, 25);
 		anchuraTextField.setFont(new Font("Monospaced", Font.BOLD, 20));
 		panelDos.add(anchuraTextField);
-
-//		pxUnoTf = new JTextField();
-//		pxUnoTf.setBounds(145, 110, 30, 25);
-//		pxUnoTf.setFont(new Font("Monospaced", Font.BOLD, 15));
-//		panelDos.add(pxUnoTf);
-//
-//		pyUnoTf = new JTextField();
-//		pyUnoTf.setBounds(195, 110, 30, 25);
-//		pyUnoTf.setFont(new Font("Monospaced", Font.BOLD, 15));
-//		panelDos.add(pyUnoTf);
-//
-//		pxDosTf = new JTextField();
-//		pxDosTf.setBounds(145, 140, 30, 25);
-//		pxDosTf.setFont(new Font("Monospaced", Font.BOLD, 15));
-//		panelDos.add(pxDosTf);
-//
-//		pyDosTf = new JTextField();
-//		pyDosTf.setBounds(195, 140, 30, 25);
-//		pyDosTf.setFont(new Font("Monospaced", Font.BOLD, 15));
-//		panelDos.add(pyDosTf);
-
-		///
 
 		pxUnoTf = new JTextField();
 		pxUnoTf.setBounds(195, 110, 30, 25);
@@ -294,8 +266,6 @@ public class Ventana extends JFrame {
 		pyDosTf.setBounds(145, 140, 30, 25);
 		pyDosTf.setFont(new Font("Monospaced", Font.BOLD, 15));
 		panelDos.add(pyDosTf);
-
-		///
 
 		valorP = new JTextField();
 		valorP.setBounds(120, 170, 50, 25);
@@ -399,7 +369,8 @@ public class Ventana extends JFrame {
 	/**
 	 * Muestra o desactiva la visibilidad del menú en la interfaz gráfica.
 	 * 
-	 * @param aux Un valor booleano que determina si se debe mostrar (true) o desactivar (false) el menú.
+	 * @param aux Un valor booleano que determina si se debe mostrar (true) o
+	 *            desactivar (false) el menú.
 	 */
 	public void menuVisible(boolean aux) {
 
@@ -976,6 +947,8 @@ public class Ventana extends JFrame {
 	}
 
 	/**
+	 * El metodo get funciona para tomar o llamar el atributo
+	 * 
 	 * @return the reiniciarItem
 	 */
 	public JMenuItem getReiniciarItem() {
@@ -983,6 +956,8 @@ public class Ventana extends JFrame {
 	}
 
 	/**
+	 * El metodo set funciona para actualizar el atributo
+	 * 
 	 * @param reiniciarItem the reiniciarItem to set
 	 */
 	public void setReiniciarItem(JMenuItem reiniciarItem) {
@@ -990,6 +965,8 @@ public class Ventana extends JFrame {
 	}
 
 	/**
+	 * El metodo get funciona para tomar o llamar el atributo
+	 * 
 	 * @return the panelBotones
 	 */
 	public JPanel getPanelBotones() {
@@ -997,6 +974,8 @@ public class Ventana extends JFrame {
 	}
 
 	/**
+	 * El metodo set funciona para actualizar el atributo
+	 * 
 	 * @param panelBotones the panelBotones to set
 	 */
 	public void setPanelBotones(JPanel panelBotones) {
