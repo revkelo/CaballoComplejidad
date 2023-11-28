@@ -111,7 +111,7 @@ public class MovimientoCaballo {
 			for (int i = 0; i < moves.size(); i++) {
 //				System.out.println(moves.get(i).x + "  " + moves.get(i).y);
 				try {
-					testKnightMovement(p, q, moves.get(i).x, moves.get(i).y, moves.get(i + 1).x, moves.get(i + 1).y);
+					internosMovimientos(p, q, moves.get(i).x, moves.get(i).y, moves.get(i + 1).x, moves.get(i + 1).y);
 				} catch (Exception e) {
 
 				}
@@ -343,7 +343,7 @@ public class MovimientoCaballo {
 	 * @param filaFinal      Fila final.
 	 * @param columnaFinal   Columna final.
 	 */
-	private void testKnightMovement(int p, int q, int filaInicial, int columnaInicial, int filaFinal,
+	private void internosMovimientos(int p, int q, int filaInicial, int columnaInicial, int filaFinal,
 			int columnaFinal) {
 		if (intermedios.isEmpty()) {
 			intermedios.add(new Point(filaInicial, columnaInicial));
