@@ -27,11 +27,6 @@ public class Controller implements ActionListener {
 	private FachadaView view;
 
 	/**
-	 * Lista de coordenadas utilizada en la aplicación.
-	 */
-	private ArrayList<Point> coordenadas;
-
-	/**
 	 * Fachada para acceder al modelo relacionado con el movimiento del caballo.
 	 */
 	private FachadaModel md;
@@ -41,7 +36,6 @@ public class Controller implements ActionListener {
 	 * los action listeners.
 	 */
 	public Controller() {
-		coordenadas = new ArrayList<Point>();
 		md = new FachadaModel();
 		view = new FachadaView();
 		actionListeners();
@@ -61,6 +55,27 @@ public class Controller implements ActionListener {
 		view.getVp().getReiniciarItem().addActionListener(this);
 	}
 
+	public void resetTotal() {
+		view.getVp().getAlturaTextField().setText("");
+		view.getVp().getAnchuraTextField().setText("");
+		view.getVp().getPxUnoTf().setText("");
+		view.getVp().getPyUnoTf().setText("");
+		view.getVp().getPxDosTf().setText("");
+		view.getVp().getPyDosTf().setText("");
+		view.getVp().getValorP().setText("");
+		view.getVp().getValorQ().setText("");
+		view.getVp().getPmat().setVisible(false);
+		view.getVp().getPanelBotones().setVisible(false);
+		md.getMc().limpiar();
+		view.getVp().resetearMatriz();
+
+		view.getVp().getRta().setText("");
+		view.getVp().getTiste().setVisible(false);
+		view.getVp().getAnterior().setVisible(false);
+		view.getVp().getSiguiente().setVisible(false);
+		view.getVp().getMostrar().setVisible(false);
+	}
+
 	/**
 	 * Maneja las acciones realizadas por el usuario en la interfaz gráfica.
 	 *
@@ -70,12 +85,13 @@ public class Controller implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
 		if (comando.equals("ReiniciarTodo")) {
-System.out.println("rei");
+			resetTotal();
 		}
 		if (comando.equals("mostrar")) {
 			new Thread(new Runnable() {
 				public void run() {
-					md.getMc().mostrarPasos(view.getVp().getBotones());
+					md.getMc().mostrarPasos(view.getVp().getBotones(), view.getVp().getMostrar(),
+							view.getVp().getAnterior(), view.getVp().getSiguiente());
 				}
 			}).start();
 		}
@@ -84,7 +100,8 @@ System.out.println("rei");
 			if (md.getMc().isAux()) {
 				new Thread(new Runnable() {
 					public void run() {
-						md.getMc().siguientePaso(view.getVp().getBotones());
+						md.getMc().siguientePaso(view.getVp().getBotones(), view.getVp().getMostrar(),
+								view.getVp().getAnterior());
 
 					}
 				}).start();
@@ -98,7 +115,8 @@ System.out.println("rei");
 			if (md.getMc().isAux2()) {
 				new Thread(new Runnable() {
 					public void run() {
-						md.getMc().anteriorPaso(view.getVp().getBotones());
+						md.getMc().anteriorPaso(view.getVp().getBotones(), view.getVp().getMostrar(),
+								view.getVp().getSiguiente());
 					}
 				}).start();
 			} else {
@@ -146,13 +164,20 @@ System.out.println("rei");
 										colinicio, filaObjetivo, colObjetivo, p, q);
 								md.getMc().camino(p, q);
 
-//								System.out.println(md.getMc().isSolucion());
-//								System.out.println("////////////////////////////");
+								view.getVp().getAlturaTextField().setText("");
+								view.getVp().getAnchuraTextField().setText("");
+								view.getVp().getPxUnoTf().setText("");
+								view.getVp().getPyUnoTf().setText("");
+								view.getVp().getPxDosTf().setText("");
+								view.getVp().getPyDosTf().setText("");
+								view.getVp().getValorP().setText("");
+								view.getVp().getValorQ().setText("");
+
 								for (int i = 0; i < aux.length; i++) {
 									for (int j = 0; j < aux[0].length; j++) {
 										view.getVp().cambiar(i, j, aux[i][j] + "");
 									}
-//									System.out.println();
+
 								}
 								if (md.getMc().isSolucion()) {
 
@@ -201,6 +226,7 @@ System.out.println("rei");
 			view.getVp().getPmat().setVisible(true);
 			view.getVp().getVolver().setVisible(true);
 			view.getVp().menuVisible(true);
+
 		}
 
 		if (comando.equals("volver")) {
@@ -209,24 +235,8 @@ System.out.println("rei");
 			view.getVp().getPanelTres().setVisible(false);
 			view.getVp().getPmat().setVisible(false);
 			view.getVp().getVolver().setVisible(false);
-
-			// Restablecer campos de entrada y matriz
-			view.getVp().getAlturaTextField().setText("");
-			view.getVp().getAnchuraTextField().setText("");
-			view.getVp().getPxUnoTf().setText("");
-			view.getVp().getPyUnoTf().setText("");
-			view.getVp().getPxDosTf().setText("");
-			view.getVp().getPyDosTf().setText("");
-			view.getVp().getValorP().setText("");
-			view.getVp().getValorQ().setText("");
-
-			view.getVp().resetearMatriz();
-
-			view.getVp().getRta().setText("");
-			view.getVp().getTiste().setVisible(false);
-			view.getVp().getAnterior().setVisible(false);
-			view.getVp().getSiguiente().setVisible(false);
-			view.getVp().getMostrar().setVisible(false);
+			view.getVp().getPmat().setVisible(false);
+			resetTotal();
 		}
 
 		if (comando.equals("Resaltar")) {

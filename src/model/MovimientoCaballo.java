@@ -109,7 +109,6 @@ public class MovimientoCaballo {
 	public void camino(int p, int q) {
 		if (solucion == true) {
 			for (int i = 0; i < moves.size(); i++) {
-//				System.out.println(moves.get(i).x + "  " + moves.get(i).y);
 				try {
 					internosMovimientos(p, q, moves.get(i).x, moves.get(i).y, moves.get(i + 1).x, moves.get(i + 1).y);
 				} catch (Exception e) {
@@ -203,8 +202,8 @@ public class MovimientoCaballo {
 			return sol;
 		} else {
 			solucion = true;
-			imprimirSolucion(sol);
-			printMoves();
+	
+
 			return sol;
 		}
 	}
@@ -269,6 +268,12 @@ public class MovimientoCaballo {
 			}
 		}
 		return false;
+	}
+
+	public void limpiar() {
+		intermedios.clear();
+		moves.clear();
+
 	}
 
 	/**
@@ -482,8 +487,10 @@ public class MovimientoCaballo {
 	 * 
 	 * @param buttons Matriz de botones que representa el tablero.
 	 */
-	public void siguientePaso(JButton[][] buttons) {
-
+	public void siguientePaso(JButton[][] buttons, JButton atras, JButton todos) {
+		atras.setVisible(false);
+		todos.setVisible(false);
+		
 		if (moves.isEmpty()) {
 			aux = false;
 		} else {
@@ -512,10 +519,14 @@ public class MovimientoCaballo {
 
 					int x = (int) intermedios.get(i).x;
 					int y = (int) intermedios.get(i).y;
-					buttons[x][y].setBackground(new Color(120, 206, 214)); // Cambiar el color del botón
+					buttons[x][y].setBackground(new Color(120, 206, 214));
 				}
 
 				if (pasoaux == 2) {
+
+					atras.setVisible(true);
+					todos.setVisible(true);
+
 					return;
 				}
 				try {
@@ -527,6 +538,9 @@ public class MovimientoCaballo {
 
 			}
 		}
+		atras.setVisible(true);
+		todos.setVisible(true);
+
 	}
 
 	/**
@@ -534,12 +548,14 @@ public class MovimientoCaballo {
 	 * 
 	 * @param buttons Matriz de botones que representa el tablero.
 	 */
-	public void anteriorPaso(JButton[][] buttons) {
+	public void anteriorPaso(JButton[][] buttons, JButton todos, JButton siguente) {
+		siguente.setVisible(false);
+		todos.setVisible(false);
 		if (moves.isEmpty()) {
 			aux2 = false;
 		} else {
 			aux2 = true;
-//			System.out.println(moves.get(paso).getX() + "  " + moves.get(paso).getY());
+
 			int otro = paso;
 			int pasoaux = 0;
 			for (int i = intermedio; i >= 0; i--) {
@@ -568,6 +584,8 @@ public class MovimientoCaballo {
 				}
 
 				if (pasoaux == 2) {
+					siguente.setVisible(true);
+					todos.setVisible(true);
 					return;
 				}
 				try {
@@ -579,6 +597,8 @@ public class MovimientoCaballo {
 
 			}
 		}
+		siguente.setVisible(true);
+		todos.setVisible(true);
 	}
 
 	/**
@@ -586,8 +606,11 @@ public class MovimientoCaballo {
 	 * 
 	 * @param buttons Matriz de botones que representa el tablero.
 	 */
-	public void mostrarPasos(JButton[][] buttons) {
+	public void mostrarPasos(JButton[][] buttons, JButton todos, JButton atras, JButton siguente) {
 		int otro = 0;
+		atras.setVisible(false);
+		siguente.setVisible(false);
+		todos.setVisible(false);
 		for (Point point : intermedios) {
 
 			for (int i = 0; i < buttons.length; i++) {
@@ -617,6 +640,9 @@ public class MovimientoCaballo {
 				e.printStackTrace();
 			}
 		}
+		atras.setVisible(true);
+		siguente.setVisible(true);
+		todos.setVisible(true);
 	}
 
 	/**

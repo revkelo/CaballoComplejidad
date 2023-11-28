@@ -35,6 +35,8 @@ import javax.swing.border.LineBorder;
  */
 
 public class Ventana extends JFrame {
+
+	private JPanel panelBotones;
 	/**
 	 * Menu de la ventana
 	 */
@@ -114,7 +116,7 @@ public class Ventana extends JFrame {
 	 */
 	public Ventana() {
 
-		setTitle("Vamo a pasar muchachos");
+		setTitle("Saltos P y Q");
 		setSize(1000, 800);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -133,6 +135,8 @@ public class Ventana extends JFrame {
 	 */
 	private void inicializarComponentes() {
 
+		panelBotones = new JPanel();
+		
 		// boton volver
 
 		volver = new JButton("Volver");
@@ -368,6 +372,7 @@ public class Ventana extends JFrame {
 
 		pmat = new JPanel();
 		pmat.setLayout(null);
+
 		pmat.setBackground(Color.black);
 		pmat.setVisible(false);
 		pmat.setBounds(300, 50, 650, 650);
@@ -379,7 +384,7 @@ public class Ventana extends JFrame {
 		add(img);
 
 		menuBar = new JMenuBar();
-		JMenu menuArchivo = new JMenu("Archivo");
+		JMenu menuArchivo = new JMenu("Menú");
 		reiniciarItem = new JMenuItem("Reiniciar");
 		reiniciarItem.setActionCommand("ReiniciarTodo");
 		menuBar.setVisible(false);
@@ -429,7 +434,7 @@ public class Ventana extends JFrame {
 	 * Reinicia la matriz de botones, estableciéndola como nula
 	 */
 	public void resetearMatriz() {
-//		System.out.println("hpla");
+
 		botones = null;
 		panelDos.repaint();
 
@@ -484,7 +489,7 @@ public class Ventana extends JFrame {
 		gbc.weighty = 1.0;
 		gbc.fill = GridBagConstraints.BOTH;
 
-		JPanel panelBotones = new JPanel(new GridLayout(altura, anchura));
+		panelBotones = new JPanel(new GridLayout(altura, anchura));
 
 		for (int i = 0; i < altura; i++) {
 			for (int j = 0; j < anchura; j++) {
@@ -503,7 +508,7 @@ public class Ventana extends JFrame {
 			gbc.gridy = (7 - altura) / 2;
 			pmat.add(panelBotones, gbc);
 		}
-
+		pmat.setVisible(true);
 		pmat.revalidate();
 		pmat.repaint();
 	}
@@ -977,6 +982,20 @@ public class Ventana extends JFrame {
 	 */
 	public void setReiniciarItem(JMenuItem reiniciarItem) {
 		this.reiniciarItem = reiniciarItem;
+	}
+
+	/**
+	 * @return the panelBotones
+	 */
+	public JPanel getPanelBotones() {
+		return panelBotones;
+	}
+
+	/**
+	 * @param panelBotones the panelBotones to set
+	 */
+	public void setPanelBotones(JPanel panelBotones) {
+		this.panelBotones = panelBotones;
 	}
 
 }
