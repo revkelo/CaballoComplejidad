@@ -67,7 +67,7 @@ public class MovimientoCaballo {
 	 * Matriz que almacena la heurística de distancia euclidiana para cada posición
 	 * en el tablero.
 	 */
-	private int[][] heuristic;
+	private int[][] heuristica;
 
 	/**
 	 * Variable estática que indica el paso actual en el recorrido .
@@ -111,7 +111,7 @@ public class MovimientoCaballo {
 			for (int i = 0; i < moves.size(); i++) {
 //				System.out.println(moves.get(i).x + "  " + moves.get(i).y);
 				try {
-					internosMovimientos(p, q, moves.get(i).x, moves.get(i).y, moves.get(i + 1).x, moves.get(i + 1).y);
+					movientosInternos(p, q, moves.get(i).x, moves.get(i).y, moves.get(i + 1).x, moves.get(i + 1).y);
 				} catch (Exception e) {
 
 				}
@@ -195,7 +195,7 @@ public class MovimientoCaballo {
 		moves.add(new Point(filaInicio, colInicio));
 		aux = true;
 		aux2 = true;
-		precalculateHeuristic(filaObjetivo, colObjetivo);
+		precalcularHeuristica(filaObjetivo, colObjetivo);
 
 		if (!resolverRecorridoCaballoUtil(filaInicio, colInicio, 2, sol, xMovimiento, yMovimiento, filaObjetivo,
 				colObjetivo, 0, Integer.MAX_VALUE)) {
@@ -298,7 +298,7 @@ public class MovimientoCaballo {
 			}
 		}
 
-		movimientos.sort(Comparator.comparingInt(mov -> heuristic[mov[0]][mov[1]]));
+		movimientos.sort(Comparator.comparingInt(mov -> heuristica[mov[0]][mov[1]]));
 
 		return movimientos;
 	}
@@ -323,14 +323,15 @@ public class MovimientoCaballo {
 	 * @param filaObjetivo Fila objetivo del recorrido.
 	 * @param colObjetivo  Columna objetivo del recorrido.
 	 */
-	private void precalculateHeuristic(int filaObjetivo, int colObjetivo) {
-		heuristic = new int[altura][ancho];
-		for (int x = 0; x < altura; x++) {
-			for (int y = 0; y < ancho; y++) {
-				heuristic[x][y] = distanciaEuclidiana(x, y, filaObjetivo, colObjetivo);
-			}
-		}
+	private void precalcularHeuristica(int filaObjetivo, int colObjetivo) {
+	    heuristica = new int[altura][ancho];
+	    for (int x = 0; x < altura; x++) {
+	        for (int y = 0; y < ancho; y++) {
+	            heuristica[x][y] = distanciaEuclidiana(x, y, filaObjetivo, colObjetivo);
+	        }
+	    }
 	}
+
 
 	/**
 	 * Muestra el movimiento en el tablero y la posición de las casillas
@@ -343,7 +344,7 @@ public class MovimientoCaballo {
 	 * @param filaFinal      Fila final.
 	 * @param columnaFinal   Columna final.
 	 */
-	private void internosMovimientos(int p, int q, int filaInicial, int columnaInicial, int filaFinal,
+	private void movientosInternos(int p, int q, int filaInicial, int columnaInicial, int filaFinal,
 			int columnaFinal) {
 		if (intermedios.isEmpty()) {
 			intermedios.add(new Point(filaInicial, columnaInicial));
