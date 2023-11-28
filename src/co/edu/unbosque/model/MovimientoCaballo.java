@@ -4,17 +4,12 @@
 package co.edu.unbosque.model;
 
 import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+
 
 /**
  * 
@@ -226,7 +221,7 @@ public class MovimientoCaballo {
 	 */
 	public boolean resolverRecorridoCaballoUtil(int x, int y, int movimiento, int sol[][], int xMovimiento[],
 			int yMovimiento[], int filaObjetivo, int colObjetivo, int intentos, int cotaSuperior) {
-		int k, siguiente_x, siguiente_y;
+		int siguiente_x, siguiente_y;
 
 		if (movimiento == altura * ancho + 1) {
 			return true;
