@@ -38,6 +38,7 @@ public class Controller implements ActionListener {
 		md = new FachadaModel();
 		view = new FachadaView();
 		actionListeners();
+
 	}
 
 	/**
@@ -140,7 +141,7 @@ public class Controller implements ActionListener {
 				}).start();
 			} else {
 				view.getMsj().showError("Primero cree la matriz");
-//				view.getVp().getE8().setText("Primero crea la matriz");
+
 			}
 		}
 
@@ -165,7 +166,6 @@ public class Controller implements ActionListener {
 			} else {
 				view.getMsj().showError("Primero cree la matriz");
 
-//				vp.getE8().setText("Primero crea la matriz");
 			}
 		}
 
@@ -182,17 +182,14 @@ public class Controller implements ActionListener {
 
 					view.getMsj().showError("Ingrese todos los datos solicitados");
 
-//					view.getVp().getE8().setText("Llene todos los datos por favor");
-//					view.getVp().getRta().setText("Ingrese los datos");
-
 				} else {
 
 					int altura = Integer.parseInt(view.getVp().getAlturaTextField().getText());
 					int anchura = Integer.parseInt(view.getVp().getAnchuraTextField().getText());
 					int filaInicio = Integer.parseInt(view.getVp().getPxUnoTf().getText());
 					int colinicio = Integer.parseInt(view.getVp().getPyUnoTf().getText());
-					int filaObjetivo = Integer.parseInt(view.getVp().getPxDosTf().getText());
-					int colObjetivo = Integer.parseInt(view.getVp().getPyDosTf().getText());
+					int filaObjetivo = Integer.parseInt(view.getVp().getPyDosTf().getText());
+					int colObjetivo = Integer.parseInt(view.getVp().getPxDosTf().getText());
 					int p = Integer.parseInt(view.getVp().getValorP().getText());
 					int q = Integer.parseInt(view.getVp().getValorQ().getText());
 
@@ -226,7 +223,7 @@ public class Controller implements ActionListener {
 									}
 									if (md.getMc().isSolucion()) {
 
-										view.getVp().getRta().setText("Si hay solucion");
+										view.getVp().getRta().setText("Si hay solución");
 										view.getVp().getResaltar().setVisible(true);
 										view.getVp().getTiste().setVisible(false);
 										view.getVp().getAnterior().setVisible(true);
@@ -245,33 +242,32 @@ public class Controller implements ActionListener {
 										view.getVp().getSiguiente().setVisible(false);
 										view.getVp().getMostrar().setVisible(false);
 										view.getVp().getRta().setVisible(true);
-										view.getVp().getRta().setText("No hay solucion");
+										view.getVp().getRta().setText("No hay solución");
 									}
 								} else {
 
-									view.getMsj().showError("Matriz no valida");
+									view.getMsj().showError("Matriz no válida");
 
-//						view.getVp().getE8().setText("Matriz no valdia");
 								}
 							} else {
-								view.getMsj().showError("coordenadas iniciales iguales a las coordenadas finales");
+								view.getMsj().showError("Coordenadas iniciales iguales a las coordenadas finales");
 							}
 
 						} else {
-							view.getMsj().showError("Valores invalidos para p y/o q");
+							view.getMsj().showError("Valores inválidos para p y/o q");
 						}
 
 					} else {
-						view.getMsj().showError("Valores invalidos para los puntos");
+						view.getMsj().showError("Valores inválidos para los puntos");
 					}
 
 				}
 			} catch (NumberFormatException e2) {
 
 				view.getMsj().showError("No ingresar letras y/o símbolos");
-//				view.getVp().getE8().setText("No ingresar Letras y/o símbolos");
+
 			} catch (Exception e2) {
-				// Manejar excepciones según sea necesario
+
 			}
 		}
 

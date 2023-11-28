@@ -124,7 +124,7 @@ public class MovimientoCaballo {
 				System.out.print("(" + moves.get(i).x + "," + moves.get(i).y + ") ");
 			}
 		}
-//		System.out.println();
+		System.out.println();
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class MovimientoCaballo {
 			for (int y = 0; y < ancho; y++) {
 				System.out.print(sol[x][y] + " ");
 			}
-//			System.out.println();
+			System.out.println();
 		}
 	}
 
@@ -249,7 +249,7 @@ public class MovimientoCaballo {
 					return true;
 				}
 
-				// Agregar cota superior
+			
 				if (movimiento < cotaSuperior) {
 					if (resolverRecorridoCaballoUtil(siguiente_x, siguiente_y, movimiento + 1, sol, xMovimiento,
 							yMovimiento, filaObjetivo, colObjetivo, intentos + 1, cotaSuperior)) {
@@ -268,6 +268,8 @@ public class MovimientoCaballo {
 	 * Después de llamar a este método, ambas listas estarán vacías.
 	 */
 	public void limpiar() {
+		// Se inicializa denuevo
+		obt = 0;
 		// Se limpia la lista 'intermedios', eliminando todos sus elementos.
 		intermedios.clear();
 
@@ -369,14 +371,11 @@ public class MovimientoCaballo {
 		int[][] matriz = { { p, q, 1 }, { q, p, 2 }, { -q, p, 3 }, { -p, q, 4 }, { -p, -q, 5 }, { -q, -p, 6 },
 				{ q, -p, 7 }, { p, -q, 8 } };
 
-//		System.out.println("Casillas disponibles:");
-
 		for (int i = 0; i < matriz.length; i++) {
 			int nuevaFila = filaCaballo + matriz[i][0];
 			int nuevaColumna = columnaCaballo + matriz[i][1];
 			if (nuevaFila == filaFinal && nuevaColumna == columnaFinal) {
-//				System.out.println(nuevaFila + " / " + columnaFinal);
-//				System.out.println("son iguales el caso es el " + matriz[i][2]);
+
 				intermedios(matriz[i][2], filaCaballo, columnaCaballo, matriz[i][0], matriz[i][1]);
 				break;
 			}
@@ -393,7 +392,6 @@ public class MovimientoCaballo {
 	 * @param columnaFinal   Columna final.
 	 */
 	public void intermedios(int caso, int filaCaballo, int columnaCaballo, int filaFinal, int columnaFinal) {
-
 		switch (caso) {
 		case 1:
 			for (int i = 0; i < filaFinal; i++) {
