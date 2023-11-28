@@ -160,7 +160,7 @@ public class Ventana extends JFrame {
 		panelUno.setBackground(Color.black);
 		add(panelUno);
 
-		titulo = new JLabel("Taller Caballito");
+		titulo = new JLabel("             Taller");
 		titulo.setBounds(40, 30, 450, 40);
 		titulo.setFont(new Font("Showcard Gothic", Font.BOLD, 35));
 		titulo.setForeground(Color.white);
@@ -189,13 +189,13 @@ public class Ventana extends JFrame {
 		e1.setForeground(Color.black);
 		panelDos.add(e1);
 
-		e2 = new JLabel("Dimension matriz");
+		e2 = new JLabel("Dimensión matriz");
 		e2.setBounds(10, 30, 450, 20);
 		e2.setFont(new Font("Monospaced", Font.BOLD, 14));
 		e2.setForeground(Color.black);
 		panelDos.add(e2);
 
-		e3 = new JLabel("Numeros entre 2 y 100");
+		e3 = new JLabel("Números entre 2 y 100");
 		e3.setBounds(10, 50, 450, 20);
 		e3.setFont(new Font("Monospaced", Font.BOLD, 14));
 		e3.setForeground(Color.black);
