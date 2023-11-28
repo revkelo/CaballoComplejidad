@@ -15,6 +15,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -32,6 +35,14 @@ import javax.swing.border.LineBorder;
  */
 
 public class Ventana extends JFrame {
+	/**
+	 * Menu de la ventana
+	 */
+	private JMenuBar menuBar;
+	/**
+	 * Item de menu para reiniciar todo
+	 */
+	private JMenuItem reiniciarItem;
 
 	/**
 	 * Panel de la interfaz gráfica que contiene elementos relacionados con la
@@ -367,6 +378,22 @@ public class Ventana extends JFrame {
 		img.setIcon(new ImageIcon("img/inicio.png"));
 		add(img);
 
+		menuBar = new JMenuBar();
+		JMenu menuArchivo = new JMenu("Archivo");
+		reiniciarItem = new JMenuItem("Reiniciar");
+		reiniciarItem.setActionCommand("ReiniciarTodo");
+		menuBar.setVisible(false);
+		menuArchivo.add(reiniciarItem);
+		menuBar.add(menuArchivo);
+		setJMenuBar(menuBar);
+	}
+
+	/**
+	 * Muestra el menu o lo desactivo
+	 */
+	public void menuVisible(boolean aux) {
+
+		menuBar.setVisible(aux);
 	}
 
 	/**
@@ -936,6 +963,20 @@ public class Ventana extends JFrame {
 	 */
 	public void setValorP(JTextField valorP) {
 		this.valorP = valorP;
+	}
+
+	/**
+	 * @return the reiniciarItem
+	 */
+	public JMenuItem getReiniciarItem() {
+		return reiniciarItem;
+	}
+
+	/**
+	 * @param reiniciarItem the reiniciarItem to set
+	 */
+	public void setReiniciarItem(JMenuItem reiniciarItem) {
+		this.reiniciarItem = reiniciarItem;
 	}
 
 }

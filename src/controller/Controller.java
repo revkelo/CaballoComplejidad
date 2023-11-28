@@ -58,6 +58,7 @@ public class Controller implements ActionListener {
 		view.getVp().getSiguiente().addActionListener(this);
 		view.getVp().getAnterior().addActionListener(this);
 		view.getVp().getMostrar().addActionListener(this);
+		view.getVp().getReiniciarItem().addActionListener(this);
 	}
 
 	/**
@@ -68,7 +69,9 @@ public class Controller implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
-
+		if (comando.equals("ReiniciarTodo")) {
+System.out.println("rei");
+		}
 		if (comando.equals("mostrar")) {
 			new Thread(new Runnable() {
 				public void run() {
@@ -197,6 +200,7 @@ public class Controller implements ActionListener {
 			view.getVp().getPanelTres().setVisible(true);
 			view.getVp().getPmat().setVisible(true);
 			view.getVp().getVolver().setVisible(true);
+			view.getVp().menuVisible(true);
 		}
 
 		if (comando.equals("volver")) {
