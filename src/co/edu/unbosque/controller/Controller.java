@@ -51,6 +51,7 @@ public class Controller implements ActionListener {
 		view.getVp().getAnterior().addActionListener(this);
 		view.getVp().getMostrar().addActionListener(this);
 		view.getVp().getReiniciarItem().addActionListener(this);
+		view.getVp().getParar().addActionListener(this);
 	}
 
 	/**
@@ -72,12 +73,14 @@ public class Controller implements ActionListener {
 		view.getVp().getPanelBotones().setVisible(false);
 		md.getMc().limpiar();
 		view.getVp().resetearMatriz();
-
+		md.getMc().setPaso(0);
+		md.getMc().setIntermedio(0);
 		view.getVp().getRta().setText("");
 		view.getVp().getTiste().setVisible(false);
 		view.getVp().getAnterior().setVisible(false);
 		view.getVp().getSiguiente().setVisible(false);
 		view.getVp().getMostrar().setVisible(false);
+
 	}
 
 	/**
@@ -87,19 +90,31 @@ public class Controller implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		String comando = e.getActionCommand();
+
+		if (comando.equals("Stop")) {
+			md.getMc().setStop(true);
+		}
+
 		if (comando.equals("ReiniciarTodo")) {
 			resetTotal();
 		}
 		if (comando.equals("mostrar")) {
 			new Thread(new Runnable() {
 				public void run() {
+					view.getVp().getParar().setVisible(true);
+					view.getVp().getVolver().setVisible(false);
+					view.getVp().menuVisible(false);
 					view.getVp().getCrearGridButton().setVisible(false);
 					view.getVp().getResaltar().setVisible(false);
 					md.getMc().mostrarPasos(view.getVp().getBotones(), view.getVp().getMostrar(),
 							view.getVp().getAnterior(), view.getVp().getSiguiente());
 					view.getVp().getCrearGridButton().setVisible(true);
 					view.getVp().getResaltar().setVisible(true);
+					view.getVp().menuVisible(true);
+					view.getVp().getVolver().setVisible(true);
+					view.getVp().getParar().setVisible(false);
 				}
 			}).start();
 		}
@@ -108,9 +123,18 @@ public class Controller implements ActionListener {
 			if (md.getMc().isAux()) {
 				new Thread(new Runnable() {
 					public void run() {
+						view.getVp().getVolver().setVisible(false);
+						view.getVp().menuVisible(false);
+						view.getVp().getCrearGridButton().setVisible(false);
+						view.getVp().getResaltar().setVisible(false);
+						view.getVp().getSiguiente().setVisible(false);
 						md.getMc().siguientePaso(view.getVp().getBotones(), view.getVp().getMostrar(),
 								view.getVp().getAnterior());
-
+						view.getVp().getSiguiente().setVisible(true);
+						view.getVp().getCrearGridButton().setVisible(true);
+						view.getVp().getResaltar().setVisible(true);
+						view.getVp().menuVisible(true);
+						view.getVp().getVolver().setVisible(true);
 					}
 				}).start();
 			} else {
@@ -123,8 +147,18 @@ public class Controller implements ActionListener {
 			if (md.getMc().isAux2()) {
 				new Thread(new Runnable() {
 					public void run() {
+						view.getVp().getVolver().setVisible(false);
+						view.getVp().menuVisible(false);
+						view.getVp().getCrearGridButton().setVisible(false);
+						view.getVp().getResaltar().setVisible(false);
+						view.getVp().getAnterior().setVisible(false);
 						md.getMc().anteriorPaso(view.getVp().getBotones(), view.getVp().getMostrar(),
 								view.getVp().getSiguiente());
+						view.getVp().getAnterior().setVisible(true);
+						view.getVp().getCrearGridButton().setVisible(true);
+						view.getVp().getResaltar().setVisible(true);
+						view.getVp().menuVisible(true);
+						view.getVp().getVolver().setVisible(true);
 					}
 				}).start();
 			} else {
@@ -168,6 +202,7 @@ public class Controller implements ActionListener {
 							if (!((filaInicio == filaObjetivo) && (colinicio == colObjetivo))) {
 
 								if (altura >= 2 && altura <= 100 && anchura >= 2 && anchura <= 100) {
+									resetTotal();
 									view.getVp().crearGrid(altura, anchura);
 									int aux[][] = md.getMc().resolverRecorridoCaballo(altura, anchura, filaInicio,
 											colinicio, filaObjetivo, colObjetivo, p, q);
@@ -198,12 +233,16 @@ public class Controller implements ActionListener {
 										view.getVp().getMostrar().setVisible(true);
 
 									} else {
-										view.getVp().getRta().setText("No hay solucion");
+
+										resetTotal();
+										view.getVp().getPanelBotones().setVisible(false);
 										view.getVp().getResaltar().setVisible(false);
 										view.getVp().getTiste().setVisible(true);
 										view.getVp().getAnterior().setVisible(false);
 										view.getVp().getSiguiente().setVisible(false);
 										view.getVp().getMostrar().setVisible(false);
+										view.getVp().getRta().setVisible(true);
+										view.getVp().getRta().setText("No hay solucion");
 									}
 								} else {
 
@@ -250,6 +289,7 @@ public class Controller implements ActionListener {
 			view.getVp().getPmat().setVisible(false);
 			view.getVp().getVolver().setVisible(false);
 			view.getVp().getPmat().setVisible(false);
+			view.getVp().menuVisible(false);
 			resetTotal();
 		}
 

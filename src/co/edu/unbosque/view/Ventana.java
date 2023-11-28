@@ -99,9 +99,9 @@ public class Ventana extends JFrame {
 
 	/**
 	 * Botones que permiten realizar acciones específicas en la interfaz gráfica,
-	 * como mostrar pasos, avanzar, retroceder y volver.
+	 * como mostrar pasos, avanzar, retroceder , volver y parar.
 	 */
-	private JButton mostrar, siguiente, anterior, volver;
+	private JButton mostrar, siguiente, anterior, volver, parar;
 
 	/**
 	 * Botones que activan acciones relacionadas con la creación de la cuadrícula,
@@ -326,6 +326,15 @@ public class Ventana extends JFrame {
 		anterior.setVisible(false);
 		panelTres.add(anterior);
 
+		parar = new JButton("Stop");
+		parar.setBounds(10, 120, 100, 50);
+		parar.setBackground(Color.black);
+		parar.setForeground(Color.white);
+		parar.setFont(new Font("Monospaced", Font.BOLD, 10));
+		parar.setActionCommand("Stop");
+		parar.setVisible(false);
+		panelTres.add(parar);
+		
 		mostrar = new JButton("Mostrar pasos \nautomaticamente");
 		mostrar.setBounds(10, 60, 220, 50);
 		mostrar.setBackground(Color.black);
@@ -980,6 +989,24 @@ public class Ventana extends JFrame {
 	 */
 	public void setPanelBotones(JPanel panelBotones) {
 		this.panelBotones = panelBotones;
+	}
+
+	/**
+	 * El metodo get funciona para tomar o llamar el atributo
+	 * 
+	 * @return the parar
+	 */
+	public JButton getParar() {
+		return parar;
+	}
+
+	/**
+	 * El metodo set funciona para actualizar el atributo
+	 * 
+	 * @param parar the parar to set
+	 */
+	public void setParar(JButton parar) {
+		this.parar = parar;
 	}
 
 }

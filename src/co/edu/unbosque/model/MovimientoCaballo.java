@@ -10,7 +10,6 @@ import java.util.Comparator;
 import java.util.List;
 import javax.swing.JButton;
 
-
 /**
  * 
  * Clase MovimientoCaballo: representa un algoritmo para encontrar el recorrido
@@ -78,7 +77,7 @@ public class MovimientoCaballo {
 	/**
 	 * Bandera que indica si la variable auxiliar está habilitada.
 	 */
-	boolean aux;
+	boolean aux, stop;
 
 	/**
 	 * Bandera que indica si la variable auxiliar 2 está habilitada.
@@ -197,7 +196,6 @@ public class MovimientoCaballo {
 			return sol;
 		} else {
 			solucion = true;
-	
 
 			return sol;
 		}
@@ -270,13 +268,12 @@ public class MovimientoCaballo {
 	 * Después de llamar a este método, ambas listas estarán vacías.
 	 */
 	public void limpiar() {
-	    // Se limpia la lista 'intermedios', eliminando todos sus elementos.
-	    intermedios.clear();
+		// Se limpia la lista 'intermedios', eliminando todos sus elementos.
+		intermedios.clear();
 
-	    // Se limpia la lista 'moves', eliminando todos sus elementos.
-	    moves.clear();
+		// Se limpia la lista 'moves', eliminando todos sus elementos.
+		moves.clear();
 	}
-
 
 	/**
 	 * Ordena los movimientos posibles basándose en la heurística de distancia
@@ -331,14 +328,13 @@ public class MovimientoCaballo {
 	 * @param colObjetivo  Columna objetivo del recorrido.
 	 */
 	private void precalcularHeuristica(int filaObjetivo, int colObjetivo) {
-	    heuristica = new int[altura][ancho];
-	    for (int x = 0; x < altura; x++) {
-	        for (int y = 0; y < ancho; y++) {
-	            heuristica[x][y] = distanciaEuclidiana(x, y, filaObjetivo, colObjetivo);
-	        }
-	    }
+		heuristica = new int[altura][ancho];
+		for (int x = 0; x < altura; x++) {
+			for (int y = 0; y < ancho; y++) {
+				heuristica[x][y] = distanciaEuclidiana(x, y, filaObjetivo, colObjetivo);
+			}
+		}
 	}
-
 
 	/**
 	 * Muestra el movimiento en el tablero y la posición de las casillas
@@ -351,13 +347,11 @@ public class MovimientoCaballo {
 	 * @param filaFinal      Fila final.
 	 * @param columnaFinal   Columna final.
 	 */
-	private void movientosInternos(int p, int q, int filaInicial, int columnaInicial, int filaFinal,
-			int columnaFinal) {
+	private void movientosInternos(int p, int q, int filaInicial, int columnaInicial, int filaFinal, int columnaFinal) {
 		if (intermedios.isEmpty()) {
 			intermedios.add(new Point(filaInicial, columnaInicial));
 		}
 
-//		System.out.println("Tablero con casillas disponibles y posición :");
 		mostrarTablero(p, q, filaInicial, columnaInicial, filaFinal, columnaFinal);
 	}
 
@@ -399,6 +393,7 @@ public class MovimientoCaballo {
 	 * @param columnaFinal   Columna final.
 	 */
 	public void intermedios(int caso, int filaCaballo, int columnaCaballo, int filaFinal, int columnaFinal) {
+
 		switch (caso) {
 		case 1:
 			for (int i = 0; i < filaFinal; i++) {
@@ -486,191 +481,204 @@ public class MovimientoCaballo {
 	}
 
 	/**
-	 * Avanza al siguiente paso en la interfaz gráfica, mostrando visualmente los cambios.
+	 * Avanza al siguiente paso en la interfaz gráfica, mostrando visualmente los
+	 * cambios.
 	 * 
-	 * @param buttons Matriz de botones que representa el tablero en la interfaz gráfica.
+	 * @param buttons Matriz de botones que representa el tablero en la interfaz
+	 *                gráfica.
 	 * @param atras   Botón para retroceder un paso.
 	 * @param todos   Botón para mostrar todos los pasos de una vez.
 	 */
 	public void siguientePaso(JButton[][] buttons, JButton atras, JButton todos) {
-	    // Oculta los botones de control durante el avance.
-	    atras.setVisible(false);
-	    todos.setVisible(false);
+		// Oculta los botones de control durante el avance.
+		atras.setVisible(false);
+		todos.setVisible(false);
 
-	    // Verifica si la lista de movimientos está vacía.
-	    if (moves.isEmpty()) {
-	        aux = false;
-	    } else {
-	        aux = true;
+		// Verifica si la lista de movimientos está vacía.
+		if (moves.isEmpty()) {
+			aux = false;
+		} else {
+			aux = true;
 
-	        // Variables de control para avanzar en los pasos.
-	        int otro = paso;
-	        int pasoaux = 0;
+			// Variables de control para avanzar en los pasos.
+			int otro = paso;
+			int pasoaux = 0;
 
-	        // Itera a través de los puntos intermedios en orden ascendente.
-	        for (int i = intermedio; i < intermedios.size(); i++) {
-	            // Restablece el color de fondo de todos los botones a blanco.
-	            for (int k = 0; k < buttons.length; k++) {
-	                for (int j = 0; j < buttons[0].length; j++) {
-	                    buttons[k][j].setBackground(Color.white);
-	                }
-	            }
+			// Itera a través de los puntos intermedios en orden ascendente.
+			for (int i = intermedio; i < intermedios.size(); i++) {
+				// Restablece el color de fondo de todos los botones a blanco.
+				for (int k = 0; k < buttons.length; k++) {
+					for (int j = 0; j < buttons[0].length; j++) {
+						buttons[k][j].setBackground(Color.white);
+					}
+				}
 
-	            // Comprueba si el movimiento actual coincide con el punto intermedio.
-	            if (moves.get(otro).getX() == intermedios.get(i).x && moves.get(otro).getY() == intermedios.get(i).y) {
-	                int x = (int) intermedios.get(i).x;
-	                int y = (int) intermedios.get(i).y;
-	                buttons[x][y].setBackground(new Color(253, 232, 98)); // Cambiar el color del botón
-	                paso = otro;
-	                intermedio = i;
-	                otro++;
-	                pasoaux++;
-	            } else {
-	                int x = (int) intermedios.get(i).x;
-	                int y = (int) intermedios.get(i).y;
-	                buttons[x][y].setBackground(new Color(120, 206, 214));
-	            }
+				// Comprueba si el movimiento actual coincide con el punto intermedio.
+				if (moves.get(otro).getX() == intermedios.get(i).x && moves.get(otro).getY() == intermedios.get(i).y) {
+					int x = (int) intermedios.get(i).x;
+					int y = (int) intermedios.get(i).y;
+					buttons[x][y].setBackground(new Color(253, 232, 98)); // Cambiar el color del botón
+					paso = otro;
+					intermedio = i;
+					otro++;
+					pasoaux++;
+				} else {
+					int x = (int) intermedios.get(i).x;
+					int y = (int) intermedios.get(i).y;
+					buttons[x][y].setBackground(new Color(120, 206, 214));
+				}
 
-	            // Finaliza el bucle si se avanzaron 2 pasos.
-	            if (pasoaux == 2) {
-	                atras.setVisible(true);
-	                todos.setVisible(true);
-	                return;
-	            }
+				// Finaliza el bucle si se avanzaron 2 pasos.
+				if (pasoaux == 2) {
+					atras.setVisible(true);
+					todos.setVisible(true);
+					return;
+				}
 
-	            // Agrega un pequeño retardo para visualizar cada paso.
-	            try {
-	                Thread.sleep(1000);
-	            } catch (InterruptedException e) {
-	                e.printStackTrace();
-	            }
-	        }
-	    }
+				// Agrega un pequeño retardo para visualizar cada paso.
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 
-	    // Muestra nuevamente los botones de control después del avance.
-	    atras.setVisible(true);
-	    todos.setVisible(true);
+		// Muestra nuevamente los botones de control después del avance.
+		atras.setVisible(true);
+		todos.setVisible(true);
 	}
 
-
 	/**
-	 * Retrocede al paso anterior en la interfaz gráfica, mostrando visualmente los cambios.
+	 * Retrocede al paso anterior en la interfaz gráfica, mostrando visualmente los
+	 * cambios.
 	 * 
-	 * @param buttons  Matriz de botones que representa el tablero en la interfaz gráfica.
-	 * @param todos    Botón para mostrar todos los pasos de una vez.
+	 * @param buttons   Matriz de botones que representa el tablero en la interfaz
+	 *                  gráfica.
+	 * @param todos     Botón para mostrar todos los pasos de una vez.
 	 * @param siguiente Botón para avanzar un paso.
 	 */
 	public void anteriorPaso(JButton[][] buttons, JButton todos, JButton siguiente) {
-	    // Oculta los botones de control durante la retrocesión.
-	    siguiente.setVisible(false);
-	    todos.setVisible(false);
+		// Oculta los botones de control durante la retrocesión.
+		siguiente.setVisible(false);
+		todos.setVisible(false);
 
-	    // Verifica si la lista de movimientos está vacía.
-	    if (moves.isEmpty()) {
-	        aux2 = false;
-	    } else {
-	        aux2 = true;
+		// Verifica si la lista de movimientos está vacía.
+		if (moves.isEmpty()) {
+			aux2 = false;
+		} else {
+			aux2 = true;
 
-	        // Variables de control para retroceder en los pasos.
-	        int otro = paso;
-	        int pasoaux = 0;
+			// Variables de control para retroceder en los pasos.
+			int otro = paso;
+			int pasoaux = 0;
 
-	        // Itera a través de los puntos intermedios en orden descendente.
-	        for (int i = intermedio; i >= 0; i--) {
-	            // Restablece el color de fondo de todos los botones a blanco.
-	            for (int k = 0; k < buttons.length; k++) {
-	                for (int j = 0; j < buttons[0].length; j++) {
-	                    buttons[k][j].setBackground(Color.white);
-	                }
-	            }
+			// Itera a través de los puntos intermedios en orden descendente.
+			for (int i = intermedio; i >= 0; i--) {
+				// Restablece el color de fondo de todos los botones a blanco.
+				for (int k = 0; k < buttons.length; k++) {
+					for (int j = 0; j < buttons[0].length; j++) {
+						buttons[k][j].setBackground(Color.white);
+					}
+				}
 
-	            // Comprueba si el movimiento actual coincide con el punto intermedio.
-	            if (moves.get(otro).getX() == intermedios.get(i).x && moves.get(otro).getY() == intermedios.get(i).y) {
-	                int x = (int) intermedios.get(i).x;
-	                int y = (int) intermedios.get(i).y;
-	                buttons[x][y].setBackground(new Color(253, 232, 98));
-	                paso = otro;
-	                intermedio = i;
-	                otro--;
-	                pasoaux++;
-	            } else {
-	                int x = (int) intermedios.get(i).x;
-	                int y = (int) intermedios.get(i).y;
-	                buttons[x][y].setBackground(new Color(120, 206, 214));
-	            }
+				// Comprueba si el movimiento actual coincide con el punto intermedio.
+				if (moves.get(otro).getX() == intermedios.get(i).x && moves.get(otro).getY() == intermedios.get(i).y) {
+					int x = (int) intermedios.get(i).x;
+					int y = (int) intermedios.get(i).y;
+					buttons[x][y].setBackground(new Color(253, 232, 98));
+					paso = otro;
+					intermedio = i;
+					otro--;
+					pasoaux++;
+				} else {
+					int x = (int) intermedios.get(i).x;
+					int y = (int) intermedios.get(i).y;
+					buttons[x][y].setBackground(new Color(120, 206, 214));
+				}
 
-	            // Finaliza el bucle si se retrocedieron 2 pasos.
-	            if (pasoaux == 2) {
-	                siguiente.setVisible(true);
-	                todos.setVisible(true);
-	                return;
-	            }
+				// Finaliza el bucle si se retrocedieron 2 pasos.
+				if (pasoaux == 2) {
+					siguiente.setVisible(true);
+					todos.setVisible(true);
+					return;
+				}
 
-	            // Agrega un pequeño retardo para visualizar cada paso.
-	            try {
-	                Thread.sleep(1000);
-	            } catch (InterruptedException e) {
-	                e.printStackTrace();
-	            }
-	        }
-	    }
+				// Agrega un pequeño retardo para visualizar cada paso.
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 
-	    // Muestra nuevamente los botones de control después de la retrocesión.
-	    siguiente.setVisible(true);
-	    todos.setVisible(true);
+		// Muestra nuevamente los botones de control después de la retrocesión.
+		siguiente.setVisible(true);
+		todos.setVisible(true);
 	}
 
 	/**
 	 * Muestra visualmente todos los pasos en la interfaz gráfica.
 	 * 
-	 * @param buttons   Matriz de botones que representa el tablero en la interfaz gráfica.
+	 * @param buttons   Matriz de botones que representa el tablero en la interfaz
+	 *                  gráfica.
 	 * @param todos     Botón para mostrar todos los pasos de una vez.
 	 * @param atras     Botón para retroceder un paso.
 	 * @param siguiente Botón para avanzar un paso.
 	 */
 	public void mostrarPasos(JButton[][] buttons, JButton todos, JButton atras, JButton siguiente) {
-	    // Oculta los botones de control durante la visualización de pasos.
-	    atras.setVisible(false);
-	    siguiente.setVisible(false);
-	    todos.setVisible(false);
+		// Oculta los botones de control durante la visualización de pasos.
+		atras.setVisible(false);
+		siguiente.setVisible(false);
+		todos.setVisible(false);
 
-	    int otro = 0;
+		int otro = 0;
 
-	    // Itera a través de los puntos intermedios para visualizar los pasos.
-	    for (Point point : intermedios) {
-	        // Restablece el color de fondo de todos los botones a blanco.
-	        for (int i = 0; i < buttons.length; i++) {
-	            for (int j = 0; j < buttons[0].length; j++) {
-	                buttons[i][j].setBackground(Color.white);
-	            }
-	        }
+		// Itera a través de los puntos intermedios para visualizar los pasos.
+		for (Point point : intermedios) {
+			// Restablece el color de fondo de todos los botones a blanco.
+			for (int i = 0; i < buttons.length; i++) {
+				for (int j = 0; j < buttons[0].length; j++) {
+					buttons[i][j].setBackground(Color.white);
+				}
+			}
 
-	        // Comprueba si el siguiente movimiento coincide con el punto actual.
-	        if (moves.get(otro).getX() == point.getX() && moves.get(otro).getY() == point.getY()) {
-	            int x = (int) point.getX();
-	            int y = (int) point.getY();
-	            buttons[x][y].setBackground(new Color(253, 232, 98)); // Cambiar el color amarillo del botón
-	            otro++;
-	        } else {
-	            int x = (int) point.getX();
-	            int y = (int) point.getY();
-	            buttons[x][y].setBackground(new Color(120, 206, 214)); // Cambiar el color azul del botón
-	        }
+			// Comprueba si el siguiente movimiento coincide con el punto actual.
+			if (moves.get(otro).getX() == point.getX() && moves.get(otro).getY() == point.getY()) {
+				int x = (int) point.getX();
+				int y = (int) point.getY();
+				buttons[x][y].setBackground(new Color(253, 232, 98)); // Cambiar el color amarillo del botón
+				otro++;
+			} else {
+				int x = (int) point.getX();
+				int y = (int) point.getY();
+				buttons[x][y].setBackground(new Color(120, 206, 214)); // Cambiar el color azul del botón
+			}
 
-	        // Agrega un pequeño retardo para visualizar cada paso.
-	        try {
-	            Thread.sleep(500);
-	        } catch (InterruptedException e) {
-	            e.printStackTrace();
-	        }
-	    }
+			// Agrega un pequeño retardo para visualizar cada paso.
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 
-	    // Muestra nuevamente los botones de control después de la visualización.
-	    atras.setVisible(true);
-	    siguiente.setVisible(true);
-	    todos.setVisible(true);
+			if (stop == true) {
+				for (int i = 0; i < buttons.length; i++) {
+					for (int j = 0; j < buttons[0].length; j++) {
+						buttons[i][j].setBackground(Color.white);
+					}
+				}
+				stop = false;
+				break;
+			}
+		}
+
+		// Muestra nuevamente los botones de control después de la visualización.
+		atras.setVisible(true);
+		siguiente.setVisible(true);
+		todos.setVisible(true);
 	}
-
 
 	/**
 	 * Obtiene la altura del tablero para el recorrido .
@@ -707,8 +715,6 @@ public class MovimientoCaballo {
 	public void setAncho(int ancho) {
 		this.ancho = ancho;
 	}
-
-
 
 	/**
 	 * Obtiene el contador de intentos realizados durante el proceso de búsqueda de
@@ -803,6 +809,62 @@ public class MovimientoCaballo {
 	 */
 	public void setAux2(boolean aux2) {
 		this.aux2 = aux2;
+	}
+
+	/**
+	 * @return the intermedios
+	 */
+	public ArrayList<Point> getIntermedios() {
+		return intermedios;
+	}
+
+	/**
+	 * @param intermedios the intermedios to set
+	 */
+	public void setIntermedios(ArrayList<Point> intermedios) {
+		this.intermedios = intermedios;
+	}
+
+	/**
+	 * @return the paso
+	 */
+	public static int getPaso() {
+		return paso;
+	}
+
+	/**
+	 * @param paso the paso to set
+	 */
+	public static void setPaso(int paso) {
+		MovimientoCaballo.paso = paso;
+	}
+
+	/**
+	 * @return the intermedio
+	 */
+	public static int getIntermedio() {
+		return intermedio;
+	}
+
+	/**
+	 * @param intermedio the intermedio to set
+	 */
+	public static void setIntermedio(int intermedio) {
+		MovimientoCaballo.intermedio = intermedio;
+	}
+
+	/**
+	 * @return the stop
+	 */
+	public boolean isStop() {
+		return stop;
+	}
+
+	/**
+	 * @param stop the stop to set
+	 */
+	public void setStop(boolean stop) {
+		this.stop = stop;
 	}
 
 }
