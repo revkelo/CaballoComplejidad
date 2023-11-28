@@ -1,7 +1,7 @@
 /**
  * Clase que maneja la logica del movimiento en el paquete model
  */
-package model;
+package co.edu.unbosque.model;
 
 import java.awt.Color;
 import java.awt.GridLayout;

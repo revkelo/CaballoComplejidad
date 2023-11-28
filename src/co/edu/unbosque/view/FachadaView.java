@@ -1,7 +1,7 @@
 /**
  * Clase que pertenece al paquete vista que se encarga de unir las clases de la vista 
  */
-package view;
+package co.edu.unbosque.view;
 
 /**
  * Clase que sirve como fachada para acceder a las funcionalidades del vista

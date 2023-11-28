@@ -1,15 +1,15 @@
 /**
  * Clase que maneja la conexion de vista y model que pertenece al paquete controller
  */
-package controller;
+package co.edu.unbosque.controller;
 
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import model.FachadaModel;
-import view.FachadaView;
+import co.edu.unbosque.model.FachadaModel;
+import co.edu.unbosque.view.FachadaView;
 
 /**
  * Controlador que gestiona las interacciones entre la vista (`Ventana`) y el

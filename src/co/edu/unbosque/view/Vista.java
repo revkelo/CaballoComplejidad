@@ -1,7 +1,7 @@
 /**
  * Clase para mostrar los errores que pertenece al paquete view
  */
-package view;
+package co.edu.unbosque.view;
 
 import javax.swing.JOptionPane;
 

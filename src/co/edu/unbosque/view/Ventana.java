@@ -1,7 +1,7 @@
 /**
  * Clase que pertenece al paquete view que maneja la interfaz grafica
  */
-package view;
+package co.edu.unbosque.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

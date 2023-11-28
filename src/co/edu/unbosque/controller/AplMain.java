@@ -1,7 +1,7 @@
 /**
  * Clase Main que pertenece al paquete controller
  */
-package controller;
+package co.edu.unbosque.controller;
 
 /**
  * Clase principal que inicia la aplicación.

@@ -1,7 +1,7 @@
 /**
  * Clase que pertenece al paquete model que une todas las clases de model
  */
-package model;
+package co.edu.unbosque.model;
 
 /**
  * 
