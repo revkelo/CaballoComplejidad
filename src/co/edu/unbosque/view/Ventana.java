@@ -36,6 +36,9 @@ import javax.swing.border.LineBorder;
 
 public class Ventana extends JFrame {
 
+	/**
+	 * Panel que maneja la matriz de botones 
+	 */
 	private JPanel panelBotones;
 	/**
 	 * Menu de la ventana
@@ -394,7 +397,9 @@ public class Ventana extends JFrame {
 	}
 
 	/**
-	 * Muestra el menu o lo desactivo
+	 * Muestra o desactiva la visibilidad del menú en la interfaz gráfica.
+	 * 
+	 * @param aux Un valor booleano que determina si se debe mostrar (true) o desactivar (false) el menú.
 	 */
 	public void menuVisible(boolean aux) {
 

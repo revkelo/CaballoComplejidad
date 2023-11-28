@@ -55,6 +55,12 @@ public class Controller implements ActionListener {
 		view.getVp().getReiniciarItem().addActionListener(this);
 	}
 
+	/**
+	 * Restablece completamente la interfaz gráfica y los datos asociados.
+	 * Limpia y restablece los campos de entrada de la vista, oculta elementos visuales,
+	 * limpia la matriz en el controlador, y reinicia la visualización de la matriz en la vista.
+	 * También oculta elementos adicionales como botones y textos.
+	 */
 	public void resetTotal() {
 		view.getVp().getAlturaTextField().setText("");
 		view.getVp().getAnchuraTextField().setText("");
