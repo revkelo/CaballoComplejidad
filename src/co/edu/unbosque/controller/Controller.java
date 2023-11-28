@@ -3,6 +3,7 @@
  */
 package co.edu.unbosque.controller;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -231,6 +232,8 @@ public class Controller implements ActionListener {
 										view.getVp().getAnterior().setVisible(true);
 										view.getVp().getSiguiente().setVisible(true);
 										view.getVp().getMostrar().setVisible(true);
+										view.getVp().resaltarCamino(filaInicio, colinicio, Color.green);
+										view.getVp().resaltarCamino(filaObjetivo, colObjetivo, Color.yellow);
 
 									} else {
 
